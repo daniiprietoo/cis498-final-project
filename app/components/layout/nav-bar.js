@@ -40,7 +40,7 @@ export function NavBar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <a href="/homepage" className="text-xl font-bold text-gray-800">
+            <a href="/homepage" className="text-2xl font-bold text-gray-800">
               DevTools
             </a>
           </div>
@@ -54,7 +54,7 @@ export function NavBar() {
             <div className="hidden md:flex items-center">
               <button
                 onClick={handleButtonClick}
-                className="flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF4500] hover:bg-indigo-700 hover:cursor-pointer"
+                className="flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF4500] hover:bg-[#e03f00] hover:cursor-pointer"
               >
                 {status === "authenticated" ? (
                   <>
@@ -111,7 +111,7 @@ export function NavBar() {
               <div className="flex flex-row justify-center">
                 <button
                   onClick={handleButtonClick}
-                  className="mt-4 px-4 py-2 text-sm font-medium text-white bg-[#FF4500] hover:bg-indigo-700 rounded-md"
+                  className="mt-4 px-4 py-2 text-sm font-medium text-white bg-[#FF4500] hover:bg-[#e03f00] rounded-md"
                 >
                   {status === "authenticated" ? (
                     <div className="flex flex-row items-center">

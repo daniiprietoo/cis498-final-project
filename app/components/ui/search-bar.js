@@ -40,7 +40,7 @@ export default function SearchBar() {
             className="w-full p-2 bg-transparent focus:outline-none text-gray-700"
           />
         </div>
-        <button className="bg-[#FF4500] text-white px-6 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+        <button className="bg-[#FF4500] text-white px-6 py-2 rounded-r-lg hover:bg-[#e03f00] transition">
           Search
         </button>
       </div>
