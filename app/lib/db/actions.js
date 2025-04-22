@@ -196,6 +196,7 @@ export const BUSINESS_QUERIES = {
     const products = biz.products.map((p) => ({
       id: p.id,
       name: p.name,
+      description: p.description,
       mainImage: p.mainImage,
       price: p.price.toString(),
       category: p.category,
