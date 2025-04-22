@@ -19,7 +19,6 @@ export default function AdminSidebar() {
     { href: "profile", label: "Profile", icon: FiUser },
     { href: "users", label: "Users", icon: FiUsers },
     { href: "business", label: "Business", icon: FiUsers },
-    
   ];
 
   return (
@@ -28,7 +27,7 @@ export default function AdminSidebar() {
         {tabs.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
-            href={`/user/${href}`}
+            href={`/admin/${href}`}
             className={
               `flex items-center p-3 rounded-md transition ` +
               (active === href

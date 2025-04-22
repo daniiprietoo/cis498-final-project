@@ -18,5 +18,18 @@ export default function ProductsPage() {
 
   console.log("Products for business:", business.products);
 
-  return <BusinessProductsTab products={business.products} />;
+  // Compute average rating and number of reviews
+
+  const productsWithRatings = business.products.map((product) => {
+    const totalRating = product.reviews.reduce((acc, review) => acc + review.rating, 0);
+    const averageRating = totalRating / product.reviews.length || 0;
+    return {
+      ...product,
+      avgRating: averageRating.toFixed(1),
+      reviewsCount: product.reviews.length,
+    };
+  }
+  );
+
+  return <BusinessProductsTab products={productsWithRatings} />;
 }

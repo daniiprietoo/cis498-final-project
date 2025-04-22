@@ -8,15 +8,11 @@ export default async function BusinessIndex() {
     console.log('User not authenticated')
     return redirect('/auth/login')
   }
-
-  if (!session.user.business) {
+  if (session.user.role !== 'BUSINESS') {
     console.log('User not a business')
     return redirect('/auth/login')
   }
-  if (!session.user.business.active) {
-    console.log('User business not active')
-    return redirect('/auth/login')
-  }
+
   
-  return redirect('/business/dashboard')
+  return redirect('/business/overview')
 }
