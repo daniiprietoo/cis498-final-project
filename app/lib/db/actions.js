@@ -1,5 +1,70 @@
 import { prisma } from "@/prisma/client";
 
+export const ADMIN_QUERIES = {
+  getAllAdminInfo: async () => {
+    const users = await prisma.user.findMany({
+      where: { role: { in: ["USER", "BUSINESS"] } },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+      }
+    });
+
+    const businesses = await prisma.business.findMany({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        status: true,
+        userId: true,
+      }
+    });
+
+    const products = await prisma.product.findMany({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        status: true,
+      }
+    });
+
+    const orders = await prisma.order.findMany({
+      select: {
+        id: true,
+        orderDate: true,
+        amount: true,
+        paymentStatus: true,
+        buyerId: true,
+        orderItems: {
+          select: {
+            id: true,
+            quantity: true,
+            price: true,
+            productId: true,
+          }
+        }
+      }
+    });
+
+    // Convert Decimal → string on products and orders
+    products.forEach((p) => {
+      p.price = p.price.toString();
+    });
+    orders.forEach((o) => {
+      o.amount = o.amount.toString();
+      o.orderItems.forEach((oi) => {
+        oi.price = oi.price.toString();
+      });
+    });
+
+    return { users, businesses, products, orders };
+  }
+}
+
 export const BUSINESS_QUERIES = {
   getById: async (userId) => {
     return prisma.business.findUnique({

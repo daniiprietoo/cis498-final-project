@@ -10,18 +10,34 @@ export function NavBar() {
   const { data: user, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+    console.log("User logged in status:", isLoggedIn);
+  }, [status]);
+
+  useEffect(() => {
+
+  }, [isLoggedIn]);
 
   console.log("User session data:", user);
+  console.log("User session status:", status);
 
   const handleButtonClick = () => {
     if (status === "authenticated") {
       if (user.user.role === "BUSINESS") {
+        console.log("Business user detected");
         router.push("/business");
-      }
-      if (user.user.role === "USER") {
+      } else if (user.user.role === "USER") {
+        console.log("User detected");
         router.push("/user");
-      }
-      if (user.user.role === "ADMIN") {
+      } else if (user.user.role === "ADMIN") {
+        console.log("Admin user detected");
         router.push("/admin");
       }
     } else {
@@ -31,9 +47,9 @@ export function NavBar() {
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
-    router.replace('/homepage');
+    setIsLoggedIn(false);
+    router.push("/homepage");
   };
-
 
   return (
     <nav className="bg-white shadow-sm">
@@ -46,7 +62,10 @@ export function NavBar() {
           </div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center items-center space-x-4">
-            <a href="/products" className="text-[#666666] hover:text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+            <a
+              href="/products"
+              className="text-[#666666] hover:text-gray-900 absolute left-1/2 transform -translate-x-1/2"
+            >
               Products
             </a>
           </div>

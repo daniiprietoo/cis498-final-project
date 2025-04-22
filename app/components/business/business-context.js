@@ -3,14 +3,14 @@
 import { createContext, useContext, useState } from 'react';
 
 export const BusinessContext = createContext({
-  user: null,
-  setUser: () => {},
+  business: null,
+  setBusiness: () => {},
 });
 
-export function BusinessProvider({ user: initialUser, children }) {
-  const [user, setUser] = useState(initialUser);
+export function BusinessProvider({ business: initialBusiness, children }) {
+  const [business, setBusiness] = useState(initialBusiness);
   return (
-    <BusinessContext.Provider value={{ user, setUser }}>
+    <BusinessContext.Provider value={{ business, setBusiness }}>
       {children}
     </BusinessContext.Provider>
   );

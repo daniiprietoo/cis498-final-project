@@ -7,12 +7,12 @@ import { redirect } from "next/navigation";
 export default async function DashboardLayout({ children }) {
   const session = await auth();
 
-  if (!session.user || session.user.role !== "admin") {
+  if (!session.user || session.user.role !== "ADMIN") {
     redirect("/auth/login");
   }
-  const adminData = await ADMIN_QUERIES.getAlladminInfo(
-    session.user.adminId
-  );
+
+  const adminData = await ADMIN_QUERIES.getAllAdminInfo();
+
   console.log("admin data:", adminData);
 
   return (
