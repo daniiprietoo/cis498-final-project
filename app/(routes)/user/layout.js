@@ -4,10 +4,10 @@ import { UserProvider } from "@/components/user/user-context";
 import { auth } from "@/lib/auth";
 import { USER_QUERIES } from "@/lib/db/actions";
 
-export default async function DashboardLayout({ children }) {
+export default async function UserLayout({ children }) {
   const session = await auth();
 
-  if (!session.user) {
+  if (!session?.user) {
     redirect("/auth/login");
   }
 

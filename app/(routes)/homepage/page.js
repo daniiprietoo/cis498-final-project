@@ -1,4 +1,3 @@
-import CategorySelector from "@/components/products/category-selector";
 import SearchBar from "@/components/ui/search-bar";
 import FeaturedProducts from "@/components/products/featured-components";
 import {
@@ -70,14 +69,12 @@ export default function HomePage() {
         <SearchBar />
       </Suspense>
 
-      {/* Categories */}
-      <section className="py-12">
-        <CategorySelector categories={categories} />
-      </section>
-
       {/* Featured Tools */}
       <section className="py-8 ">
         <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12 text-[#000000]">
+            Featured Products
+          </h2>
           <FeaturedProducts />
           <div className="flex justify-between items-center mt-6">
             <a
