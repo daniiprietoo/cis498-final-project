@@ -29,22 +29,22 @@ export default function AdminProfile({ user }) {
             className="rounded-full object-cover border-4 border-white shadow-md"
           />
         ) : (
-          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold shadow-md">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-orange-700 to-red-300 flex items-center justify-center text-white text-3xl font-bold shadow-md">
             {name ? name.charAt(0).toUpperCase() : "U"}
           </div>
         )}
       </div>
 
-      <h2 className="text-xl font-bold text-gray-800 mb-1">
+      <h2 className="text-xl font-bold text-[#666666] mb-1">
         {user.name || "User"}
       </h2>
 
-      <div className="flex items-center justify-center text-gray-500 text-sm mb-3">
+      <div className="flex items-center justify-center text-[#666666] text-sm mb-3">
         <FiMail className="mr-1" />
         <span>{email}</span>
       </div>
 
-      <div className="flex items-center justify-center text-gray-500 text-sm">
+      <div className="flex items-center justify-center text-[#666666] text-sm">
         <FiCalendar className="mr-1" />
         <span>Joined {joinDate}</span>
       </div>
@@ -52,7 +52,7 @@ export default function AdminProfile({ user }) {
       <div className="mt-4">
         <a
           href="/settings"
-          className="text-indigo-600 text-sm hover:text-indigo-800 transition"
+          className="text-[#ff4500] text-sm hover:text-[#e03f00] transition font-bold"
         >
           Edit Profile
         </a>

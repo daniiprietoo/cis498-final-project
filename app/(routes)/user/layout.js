@@ -23,7 +23,7 @@ export default async function UserLayout({ children }) {
     <UserProvider user={userData}>
       <div className="min-h-screen bg-[#F8F8F8]">
         {/* header/banner */}
-        <div className="bg-gradient-to-r from-orange-200 to-[#F8F8F8] text-white py-12">
+        <div className="bg-orange-200 text-[#ff4500] py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold">Your Dashboard</h1>
             <p className="opacity-90">Manage your profile, orders, reviews…</p>
