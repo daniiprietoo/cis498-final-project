@@ -31,7 +31,7 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-5xl font-mono font-extrabold text-[#FF4500] mb-4">
               EMPOWERING DEVELOPERS, SIMPLIFYING WORKFLOWS.
               </h1>
-              <p className="text-xl mb-6 text-[#666666]">
+              <p className="text-xl mb-6 text-black">
                 Discover premium plugins, themes, and extensions to supercharge
                 your development workflow
               </p>

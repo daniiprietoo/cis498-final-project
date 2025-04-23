@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAdmin } from "@/components/admin/admin-context";
+import { FiEdit, FiTrash2, FiCheck, FiX } from "react-icons/fi";
 
 export default function AdminUsers() {
   const { admin, setAdmin } = useAdmin();
@@ -62,12 +63,12 @@ export default function AdminUsers() {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+    <div className="p-4 text-[#666666]">
+      
       <div className="overflow-x-auto mb-6">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+        <table className="min-w-full bg-white border border-[#ff4500] rounded-lg ">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-gray-100 text-left">
               <th className="py-2 px-4 border-b">ID</th>
               <th className="py-2 px-4 border-b">Name</th>
               <th className="py-2 px-4 border-b">Email</th>
@@ -77,110 +78,112 @@ export default function AdminUsers() {
             </tr>
           </thead>
           <tbody>
-            {admin.users.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50">
-                <td className="py-2 px-4 border-b">{user.id}</td>
+            {admin.users
+              .filter(user => user.role.toLowerCase() === "user")  // only USERs
+              .map((user) => (
+                <tr key={user.id} className="hover:bg-gray-50">
+                  <td className="py-2 px-4 border-b">{user.id}</td>
 
-                {editingId === user.id ? (
-                  <>
-                    <td className="py-2 px-4 border-b">
-                      <input
-                        value={editForm.name}
-                        onChange={(e) =>
-                          setEditForm({ ...editForm, name: e.target.value })
-                        }
-                        className="border p-1 w-full"
-                      />
-                    </td>
-                    <td className="py-2 px-4 border-b">
-                      <input
-                        value={editForm.email}
-                        onChange={(e) =>
-                          setEditForm({ ...editForm, email: e.target.value })
-                        }
-                        className="border p-1 w-full"
-                      />
-                    </td>
-                    <td className="py-2 px-4 border-b">
-                      <input
-                        value={editForm.role}
-                        onChange={(e) =>
-                          setEditForm({ ...editForm, role: e.target.value })
-                        }
-                        className="border p-1 w-full"
-                      />
-                    </td>
-                    <td className="py-2 px-4 border-b">
-                      <select
-                        value={editForm.active ? "Active" : "Inactive"}
-                        onChange={(e) =>
-                          setEditForm({
-                            ...editForm,
-                            active: e.target.value === "Active",
-                          })
-                        }
-                        className="border p-1"
-                      >
-                        <option>Active</option>
-                        <option>Inactive</option>
-                      </select>
-                    </td>
-                    <td className="py-2 px-4 border-b space-x-2">
-                      <button
-                        onClick={() => handleSave(user.id)}
-                        className="text-green-600"
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => setEditingId(null)}
-                        className="text-gray-600"
-                      >
-                        Cancel
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td className="py-2 px-4 border-b">{user.name || "N/A"}</td>
-                    <td className="py-2 px-4 border-b">{user.email}</td>
-                    <td className="py-2 px-4 border-b">{user.role}</td>
-                    <td className="py-2 px-4 border-b">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs ${
-                          user.active
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
-                      >
-                        {user.active ? "Active" : "Inactive"}
-                      </span>
-                    </td>
-                    <td className="py-2 px-4 border-b space-x-2">
-                      <button
-                        onClick={() => startEdit(user)}
-                        className="text-blue-600"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteUser(user.id)}
-                        className="text-red-600"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </>
-                )}
-              </tr>
-            ))}
+                  {editingId === user.id ? (
+                    <>
+                      <td className="py-2 px-4 border-b">
+                        <input
+                          value={editForm.name}
+                          onChange={(e) =>
+                            setEditForm({ ...editForm, name: e.target.value })
+                          }
+                          className="border p-1 w-full"
+                        />
+                      </td>
+                      <td className="py-2 px-4 border-b">
+                        <input
+                          value={editForm.email}
+                          onChange={(e) =>
+                            setEditForm({ ...editForm, email: e.target.value })
+                          }
+                          className="border p-1 w-full"
+                        />
+                      </td>
+                      <td className="py-2 px-4 border-b">
+                        <input
+                          value={editForm.role}
+                          onChange={(e) =>
+                            setEditForm({ ...editForm, role: e.target.value })
+                          }
+                          className="border p-1 w-full"
+                        />
+                      </td>
+                      <td className="py-2 px-4 border-b">
+                        <select
+                          value={editForm.active ? "Active" : "Inactive"}
+                          onChange={(e) =>
+                            setEditForm({
+                              ...editForm,
+                              active: e.target.value === "Active",
+                            })
+                          }
+                          className="border p-1"
+                        >
+                          <option>Active</option>
+                          <option>Inactive</option>
+                        </select>
+                      </td>
+                      <td className="py-2 px-4 border-b space-x-2">
+                        <button
+                          onClick={() => handleSave(user.id)}
+                          aria-label="Save changes"
+                        >
+                          <FiCheck className="text-green-600" />
+                        </button>
+                        <button
+                          onClick={() => setEditingId(null)}
+                          aria-label="Cancel edit"
+                        >
+                          <FiX className="text-gray-600" />
+                        </button>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="py-2 px-4 border-b">{user.name || "N/A"}</td>
+                      <td className="py-2 px-4 border-b">{user.email}</td>
+                      <td className="py-2 px-4 border-b">{user.role}</td>
+                      <td className="py-2 px-4 border-b">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            user.active
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
+                          {user.active ? "Active" : "Inactive"}
+                        </span>
+                      </td>
+                      <td className="py-2 px-4 border-b space-x-2">
+                        <button
+                          onClick={() => startEdit(user)}
+                          aria-label="Edit user"
+                        >
+                          <FiEdit className="text-[#666666]" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteUser(user.id)}
+                          aria-label="Delete user"
+                        >
+                          <FiTrash2 className="text-[#666666]" />
+                        </button>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
 
       {/* Add new user form */}
       <div className="space-y-2">
-        <h2 className="text-lg font-medium">Add New User</h2>
+        <h2 className="text-lg font-bold">New User</h2>
         <div className="flex space-x-2">
           <input
             type="text"
@@ -221,7 +224,7 @@ export default function AdminUsers() {
           </select>
           <button
             onClick={handleAddUser}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-[#ff4500] text-white px-4 py-2 rounded font-bold"
           >
             Add
           </button>
