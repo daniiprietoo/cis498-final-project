@@ -15,14 +15,19 @@ export default async function DashboardLayout({ children }) {
 
   console.log("admin data:", adminData);
 
+  const adminWithUser = {
+    ...adminData,
+    user: session.user
+  }
+
   return (
-    <AdminProvider admin={adminData}>
+    <AdminProvider admin={adminWithUser}>
       <div className="min-h-screen bg-[#F8F8F8] text-gray-700">
         {/* header/banner */}
         <div className="bg-gradient-to-r from-orange-200 to-[#F8F8F8] text-white py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold">
-              {session.user.adminName}Dashboard
+              {session?.user.name} Dashboard
             </h1>
             <p className="opacity-90">Manage Users and Businesses</p>
           </div>
@@ -34,7 +39,7 @@ export default async function DashboardLayout({ children }) {
             <section className="lg:col-span-3 space-y-8">{children}</section>
           </div>
         </div>
-      </div> 
+      </div>
     </AdminProvider>
   );
 }
