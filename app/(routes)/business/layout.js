@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export default async function DashboardLayout({ children }) {
   const session = await auth();
 
-  if (!session.user || session.user.role !== "BUSINESS") {
+  if (!session?.user || session?.user?.role !== "BUSINESS") {
     redirect("/auth/login");
   }
   const businessData = await BUSINESS_QUERIES.getAllBusinessInfo(

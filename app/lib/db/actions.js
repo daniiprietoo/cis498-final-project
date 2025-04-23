@@ -9,7 +9,7 @@ export const ADMIN_QUERIES = {
         name: true,
         email: true,
         role: true,
-      }
+      },
     });
 
     const businesses = await prisma.business.findMany({
@@ -19,7 +19,7 @@ export const ADMIN_QUERIES = {
         description: true,
         status: true,
         userId: true,
-      }
+      },
     });
 
     const products = await prisma.product.findMany({
@@ -29,7 +29,7 @@ export const ADMIN_QUERIES = {
         description: true,
         price: true,
         status: true,
-      }
+      },
     });
 
     const orders = await prisma.order.findMany({
@@ -45,9 +45,9 @@ export const ADMIN_QUERIES = {
             quantity: true,
             price: true,
             productId: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
 
     // Convert Decimal → string on products and orders
@@ -62,8 +62,8 @@ export const ADMIN_QUERIES = {
     });
 
     return { users, businesses, products, orders };
-  }
-}
+  },
+};
 
 export const BUSINESS_QUERIES = {
   getById: async (userId) => {
@@ -318,7 +318,7 @@ export const USER_QUERIES = {
           },
         },
       },
-    })
+    });
   },
 
   getAllUserInfo: async (userId) => {
@@ -414,6 +414,9 @@ export const USER_MUTATIONS = {
   createUser: (data) => prisma.user.create({ data }),
   updateUser: (id, data) => prisma.user.update({ where: { id }, data }),
   deleteUser: (id) => prisma.user.delete({ where: { id } }),
+  updateReview: (id, data) => prisma.review.update({ where: { id }, data }),
+  updateSupportRequest: (id, data) =>
+    prisma.supportRequest.update({ where: { id }, data }),
 };
 
 export const PRODUCT_QUERIES = {
