@@ -1,15 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FiUser,
-  FiShoppingBag,
-  FiStar,
-  FiMessageSquare,
-  FiHeart,
-  FiUsers,
-} from "react-icons/fi";
+import { FiUser, FiUsers } from "react-icons/fi";
 
 export default function AdminSidebar() {
   const pathname = usePathname();
@@ -27,7 +19,7 @@ export default function AdminSidebar() {
         {tabs.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
-            href={`/admin/${href}`}
+            href={`/admin/${href}`} 
             className={
               `flex items-center p-3 rounded-md transition ` +
               (active === href

@@ -10,7 +10,9 @@ export default async function DashboardLayout({ children }) {
   if (!session.user || session.user.role !== "ADMIN") {
     redirect("/auth/login");
   }
+
   const adminData = await ADMIN_QUERIES.getAllAdminInfo();
+
   console.log("admin data:", adminData);
 
   return (

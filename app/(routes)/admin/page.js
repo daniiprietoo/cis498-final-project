@@ -1,12 +1,13 @@
-'use client';
+import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth'
 
-const AdminDashboard = () => {
+export default async function AdminIndex() {
+  const session = await auth()
 
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
+  if (!session?.user) {
+    console.log('User not authenticated')
+    return redirect('/auth/login')
+  }
+  
+  return redirect('/admin/profile')
 }
-
-export default AdminDashboard;
