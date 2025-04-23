@@ -2,28 +2,16 @@
 
 import { FaBars, FaUser } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
 
 export function NavBar() {
   const { data: user, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-    console.log("User logged in status:", isLoggedIn);
-  }, [status]);
-
-  useEffect(() => {
-
-  }, [isLoggedIn]);
 
   console.log("User session data:", user);
   console.log("User session status:", status);
@@ -46,9 +34,10 @@ export function NavBar() {
   };
 
   const handleLogout = async () => {
-    await signOut({ redirect: false });
-    setIsLoggedIn(false);
-    router.push("/homepage");
+    await signOut({
+      callbackUrl: "/homepage",
+      redirect: true,
+    });
   };
 
   return (
@@ -56,18 +45,18 @@ export function NavBar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <a href="/homepage" className="text-2xl font-bold text-gray-800">
+            <Link href="/homepage" className="text-xl font-bold text-gray-800">
               DevTools
-            </a>
+            </Link>
           </div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center items-center space-x-4">
-            <a
+            <Link
               href="/products"
               className="text-[#666666] hover:text-gray-900 absolute left-1/2 transform -translate-x-1/2"
             >
               Products
-            </a>
+            </Link>
           </div>
           {status !== "loading" && (
             <div className="hidden md:flex items-center">

@@ -1,33 +1,57 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { FiStar as Star, FiTrash2 as TrashIcon } from 'react-icons/fi';
+import { useState } from "react";
+import { FiStar as Star, FiTrash2 as TrashIcon } from "react-icons/fi";
+import { useSession } from "next-auth/react";
 
-export default function ReviewSection({ reviews }) {
+export default function ReviewSection({ reviews: initialReviews, productId }) {
+  const { data: session } = useSession();
+
+  const [allReviews, setAllReviews] = useState(initialReviews);
   const [showAll, setShowAll] = useState(false);
-  const [newReview, setNewReview] = useState({
-    name: '',
-    rating: 0,
-    comment: '',
-  });
-  const [submittedReviews, setSubmittedReviews] = useState([]);
+  const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
 
-  const list = showAll
-    ? [...submittedReviews, ...reviews]
-    : [...submittedReviews, ...reviews].slice(0, 3);
+  // decide how many to show
+  const list = showAll ? allReviews : allReviews.slice(0, 3);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newEntry = {
-      id: Date.now(),
-      reviewer: { name: newReview.name },
-      createdAt: new Date().toISOString(),
-      rating: newReview.rating,
-      comment: newReview.comment,
-      isUserSubmitted: true,
-    };
-    setSubmittedReviews((prev) => [newEntry, ...prev]);
-    setNewReview({ name: '', rating: 0, comment: '' });
+
+    if (!session) {
+      alert("You must be logged in to leave a review.");
+      return;
+    }
+    if (newReview.rating < 1 || newReview.rating > 5) {
+      alert("Please select a rating between 1 and 5.");
+      return;
+    }
+    if (!newReview.comment) {
+      alert("Please enter a comment.");
+      return;
+    }
+    
+    const fd = new FormData(e.target);
+    fd.append("reviewerId", session.user.id);
+    fd.append("productId", productId);
+    fd.append("createdAt", new Date().toISOString());
+
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        body: fd,
+      });
+
+      // your API returns { review, message }
+      const { review: created } = await res.json();
+
+      // prepend new review into state
+      setAllReviews((prev) => [created, ...prev]);
+      setNewReview({ rating: 0, comment: "" });
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+    return;
   };
 
   const handleDelete = (id) => {
@@ -40,7 +64,10 @@ export default function ReviewSection({ reviews }) {
 
       <div className="space-y-4">
         {list.map((r) => (
-          <div key={r.id} className="bg-white p-4 rounded-lg shadow-sm border border-[#CCCCCC] relative group">
+          <div
+            key={r.id}
+            className="bg-white p-4 rounded-lg shadow-sm border border-[#CCCCCC] relative group"
+          >
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium text-black">{r.reviewer.name}</span>
               <span className="text-sm text-[#666666]">
@@ -51,7 +78,11 @@ export default function ReviewSection({ reviews }) {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={i < r.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}
+                  className={
+                    i < r.rating
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-gray-300"
+                  }
                 />
               ))}
             </div>
@@ -66,32 +97,23 @@ export default function ReviewSection({ reviews }) {
                 <TrashIcon />
               </button>
             )}
-
           </div>
         ))}
       </div>
 
-      {reviews.length + submittedReviews.length > 3 && (
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="text-[#FF4500] hover:underline font-medium"
-        >
-          {showAll ? 'Show Less' : `Show All (${reviews.length + submittedReviews.length})`}
+      {allReviews.length > 3 && (
+        <button onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Show Less" : `Show All (${allReviews.length})`}
         </button>
       )}
 
       {/* Add Review Form */}
       <div className="mt-8 p-6 bg-white rounded-lg border border-[#CCCCCC]">
-        <h3 className="text-xl font-semibold text-[#333333] mb-4">Leave a Review</h3>
+        <h3 className="text-xl font-semibold text-[#333333] mb-4">
+          Leave a Review
+        </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Your Name"
-            value={newReview.name}
-            onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
-            className="w-full p-2 border border-[#CCCCCC] rounded text-[#666666]"
-            required
-          />
+          <input type="hidden" name="productId" value={productId} />
 
           <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
@@ -99,16 +121,22 @@ export default function ReviewSection({ reviews }) {
                 key={i}
                 onClick={() => setNewReview({ ...newReview, rating: i + 1 })}
                 className={`cursor-pointer ${
-                  i < newReview.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                  i < newReview.rating
+                    ? "text-yellow-400 fill-yellow-400"
+                    : "text-gray-300"
                 }`}
               />
             ))}
+            <input type="hidden" name="rating" value={newReview.rating} />
           </div>
 
           <textarea
             placeholder="Your Comment"
+            name="comment"
             value={newReview.comment}
-            onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
+            onChange={(e) =>
+              setNewReview({ ...newReview, comment: e.target.value })
+            }
             className="w-full p-2 border border-[#CCCCCC] rounded text-[#666666]"
             rows="3"
             required

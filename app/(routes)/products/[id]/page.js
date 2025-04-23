@@ -44,7 +44,7 @@ export default async function ProductPage({ params }) {
       <ProductDetails product={product} />
 
       {/* 2) Reviews */}
-      <ReviewSection reviews={product.reviews} />
+      <ReviewSection reviews={product.reviews} productId={product.id} />
     </div>
   );
 }

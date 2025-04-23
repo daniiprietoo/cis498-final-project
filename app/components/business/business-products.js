@@ -7,6 +7,7 @@ export default function BusinessProductsTab({ products }) {
       name: p.name,
       description: p.description,
       price: p.price.toString(),
+      mainImage: p.mainImage,
       category: p.category,
       url: p.url,
       avgRating: p.avgRating,
