@@ -6,42 +6,28 @@ import { FiEdit, FiTrash2, FiCheck, FiX } from "react-icons/fi";
 
 export default function AdminUsers() {
   const { admin, setAdmin } = useAdmin();
-  const [newUser, setNewUser] = useState({ name: "", email: "", role: "user", active: true });
   const [editingId, setEditingId] = useState(null);
-  const [editForm, setEditForm] = useState({ name: "", email: "", role: "user", active: true });
-
-  // Initial fetch (after layout’s provider)
-  useEffect(() => {
-    async function load() {
-      const res = await fetch("/api/admin/users");
-      const users = await res.json();
-      setAdmin({ ...admin, users });
-    }
-    load();
-  }, []);
-
-  async function handleAddUser() {
-    const res = await fetch("/api/admin/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
-    });
-    const created = await res.json();
-    setAdmin({ ...admin, users: [...admin.users, created] });
-    setNewUser({ name: "", email: "", role: "user", active: true });
-  }
-
+  
   async function handleDeleteUser(id) {
-    await fetch(`/api/admin/users?id=${id}`, { method: "DELETE" });
+    const res = await fetch(`/api/admin/users/${id}`, { method: "DELETE" });
+
+    if (!res.ok) {
+      console.error("Failed to delete user");
+      alert("Failed to delete user");
+      return;
+    }
+    const deleted = await res.json();
+    console.log("Deleted user:", deleted);
+    alert("User deleted successfully");
+    // 1) update the context admin.users array
     setAdmin({ ...admin, users: admin.users.filter((u) => u.id !== id) });
   }
 
   async function handleSave(id) {
-    const payload = { id, ...editForm };
-    const res = await fetch("/api/admin/users", {
+    const res = await fetch(`/api/admin/users/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(editForm),
     });
     const updated = await res.json();
     setAdmin({
@@ -58,7 +44,6 @@ export default function AdminUsers() {
       name: user.name,
       email: user.email,
       role: user.role,
-      active: user.active,
     });
   }
 
@@ -73,13 +58,12 @@ export default function AdminUsers() {
               <th className="py-2 px-4 border-b">Name</th>
               <th className="py-2 px-4 border-b">Email</th>
               <th className="py-2 px-4 border-b">Role</th>
-              <th className="py-2 px-4 border-b">Status</th>
               <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
             {admin.users
-              .filter(user => user.role.toLowerCase() === "user")  // only USERs
+              .filter(user => user.role.toLowerCase() === "user")  
               .map((user) => (
                 <tr key={user.id} className="hover:bg-gray-50">
                   <td className="py-2 px-4 border-b">{user.id}</td>
@@ -113,21 +97,6 @@ export default function AdminUsers() {
                           className="border p-1 w-full"
                         />
                       </td>
-                      <td className="py-2 px-4 border-b">
-                        <select
-                          value={editForm.active ? "Active" : "Inactive"}
-                          onChange={(e) =>
-                            setEditForm({
-                              ...editForm,
-                              active: e.target.value === "Active",
-                            })
-                          }
-                          className="border p-1"
-                        >
-                          <option>Active</option>
-                          <option>Inactive</option>
-                        </select>
-                      </td>
                       <td className="py-2 px-4 border-b space-x-2">
                         <button
                           onClick={() => handleSave(user.id)}
@@ -148,17 +117,7 @@ export default function AdminUsers() {
                       <td className="py-2 px-4 border-b">{user.name || "N/A"}</td>
                       <td className="py-2 px-4 border-b">{user.email}</td>
                       <td className="py-2 px-4 border-b">{user.role}</td>
-                      <td className="py-2 px-4 border-b">
-                        <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            user.active
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
-                          }`}
-                        >
-                          {user.active ? "Active" : "Inactive"}
-                        </span>
-                      </td>
+                      
                       <td className="py-2 px-4 border-b space-x-2">
                         <button
                           onClick={() => startEdit(user)}
