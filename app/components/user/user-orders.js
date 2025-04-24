@@ -16,7 +16,7 @@ export default function OrdersTab({ orders }) {
         <p className="text-gray-500">You haven't made any purchases yet.</p>
         <a
           href="/products"
-          className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
+          className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition"
         >
           Browse Products
         </a>
@@ -83,14 +83,14 @@ export default function OrdersTab({ orders }) {
               <td className="py-3 px-2 text-right">
                 <a
                   href={`/orders/${order.id}`}
-                  className="text-indigo-600 hover:text-indigo-800 transition mr-3"
+                  className="text-[#ff4500] hover:text-[#e03f00] transition mr-3"
                 >
                   <FiExternalLink className="inline-block" />
                 </a>
                 {order.paymentStatus === "COMPLETED" && (
                   <a
                     href="#"
-                    className="text-indigo-600 hover:text-indigo-800 transition"
+                    className="text-[#ff4500] hover:text-[#e03f00] transition"
                   >
                     <FiDownload className="inline-block" />
                   </a>

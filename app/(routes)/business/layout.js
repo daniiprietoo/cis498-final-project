@@ -24,7 +24,7 @@ export default async function DashboardLayout({ children }) {
             <h1 className="text-3xl font-bold">
               {session.user.businessName}Dashboard
             </h1>
-            <p className="opacity-90">Manage your profile, orders, reviews…</p>
+            <p className="opacity-90 text-black">Manage your profile, orders, reviews…</p>
           </div>
         </div>
 

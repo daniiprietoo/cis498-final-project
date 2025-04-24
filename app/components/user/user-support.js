@@ -24,7 +24,7 @@ export default function SupportTab({ supportRequests }) {
         <p className="text-gray-500">You don't have any support requests.</p>
         <a 
           href="/support/new" 
-          className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
+          className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition"
         >
           Create Support Request
         </a>
@@ -60,7 +60,7 @@ export default function SupportTab({ supportRequests }) {
             <span>Created on {formatDate(request.createdAt)}</span>
             <a 
               href={`/support/${request.id}`}
-              className="text-indigo-600 hover:text-indigo-800 transition"
+              className="text-[#ff4500] hover:text-[#e03f00] transition"
             >
               View Details
             </a>

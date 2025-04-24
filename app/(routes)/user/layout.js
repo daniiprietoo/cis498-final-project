@@ -26,7 +26,7 @@ export default async function UserLayout({ children }) {
         <div className="bg-orange-200 text-[#ff4500] py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold">Your Dashboard</h1>
-            <p className="opacity-90">Manage your profile, orders, reviews…</p>
+            <p className="opacity-90 text-black">Manage your profile, orders, reviews…</p>
           </div>
         </div>
 
