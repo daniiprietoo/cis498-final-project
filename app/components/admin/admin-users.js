@@ -181,55 +181,7 @@ export default function AdminUsers() {
         </table>
       </div>
 
-      {/* Add new user form */}
-      <div className="space-y-2">
-        <h2 className="text-lg font-bold">New User</h2>
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            placeholder="Name"
-            value={newUser.name}
-            onChange={(e) =>
-              setNewUser({ ...newUser, name: e.target.value })
-            }
-            className="border p-2 rounded flex-1"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={newUser.email}
-            onChange={(e) =>
-              setNewUser({ ...newUser, email: e.target.value })
-            }
-            className="border p-2 rounded flex-1"
-          />
-          <input
-            type="text"
-            placeholder="Role"
-            value={newUser.role}
-            onChange={(e) =>
-              setNewUser({ ...newUser, role: e.target.value })
-            }
-            className="border p-2 rounded w-24"
-          />
-          <select
-            value={newUser.active ? "Active" : "Inactive"}
-            onChange={(e) =>
-              setNewUser({ ...newUser, active: e.target.value === "Active" })
-            }
-            className="border p-2 rounded"
-          >
-            <option>Active</option>
-            <option>Inactive</option>
-          </select>
-          <button
-            onClick={handleAddUser}
-            className="bg-[#ff4500] text-white px-4 py-2 rounded font-bold"
-          >
-            Add
-          </button>
-        </div>
-      </div>
+      
     </div>
   );
 }

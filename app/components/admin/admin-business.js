@@ -183,49 +183,6 @@ export default function AdminBusiness() {
         </table>
       </div>
 
-      {/* Add new business form */}
-      <div className="space-y-2">
-        <h2 className="text-lg font-bold">New Business</h2>
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            placeholder="Name"
-            value={newBiz.name}
-            onChange={(e) =>
-              setNewBiz({ ...newBiz, name: e.target.value })
-            }
-            className="border p-2 rounded flex-1"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={newBiz.email}
-            onChange={(e) =>
-              setNewBiz({ ...newBiz, email: e.target.value })
-            }
-            className="border p-2 rounded flex-1"
-          />
-          <select
-            value={newBiz.active ? "Active" : "Inactive"}
-            onChange={(e) =>
-              setNewBiz({
-                ...newBiz,
-                active: e.target.value === "Active",
-              })
-            }
-            className="border p-2 rounded"
-          >
-            <option>Active</option>
-            <option>Inactive</option>
-          </select>
-          <button
-            onClick={handleAdd}
-            className="bg-[#ff4500] text-white px-4 py-2 rounded font-bold"
-          >
-            Add
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
