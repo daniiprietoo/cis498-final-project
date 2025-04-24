@@ -28,7 +28,7 @@ export default function ProductDetails({ product }) {
         <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
         <p className="text-[#666666]">{product.description}</p>
         <div className="flex items-center space-x-4">
-          <span className="text-3xl font-extrabold text-indigo-600">
+          <span className="text-3xl font-extrabold text-[#ff4500]">
             ${product.price.toFixed(2)}
           </span>
           <button
@@ -55,14 +55,14 @@ export default function ProductDetails({ product }) {
 
         <button
           onClick={handleAddToCart}
-          className="bg-[#FF4500] text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
+          className="bg-[#FF4500] text-white px-6 py-3 rounded-lg hover:bg-[#e03f00] transition"
         >
           Add to Cart
         </button>
 
         <div className="text-sm text-gray-500">
           Sold by{' '}
-          <span className="font-medium text-indigo-800">
+          <span className="font-medium text-[#ff4500]">
             {product.seller.name}
           </span>
         </div>

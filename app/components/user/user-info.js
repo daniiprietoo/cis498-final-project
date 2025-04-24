@@ -28,7 +28,7 @@ export default function UserInfo({ user }) {
             className="rounded-full object-cover border-4 border-white shadow-md"
           />
         ) : (
-          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold shadow-md">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-orange-700 to-red-300 flex items-center justify-center text-white text-3xl font-bold shadow-md">
             {name ? name.charAt(0).toUpperCase() : "U"}
           </div>
         )}
@@ -51,7 +51,7 @@ export default function UserInfo({ user }) {
       <div className="mt-4">
         <a
           href="/settings"
-          className="text-indigo-600 text-sm hover:text-indigo-800 transition"
+          className="text-[#ff4500] text-sm hover:text-[#e03f00] transition"
         >
           Edit Profile
         </a>

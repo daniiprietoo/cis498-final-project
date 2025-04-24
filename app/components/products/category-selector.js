@@ -14,7 +14,7 @@ export default function CategorySelector({
             className={`px-5 py-2 rounded-full ${
               selectedCategory === category.id
                 ? "bg-[#FF4500] text-white"
-                : "bg-white text-gray-700 border border-gray-200 hover:border-indigo-600"
+                : "bg-white text-gray-700 border border-gray-200 hover:border-[#ff4500]"
             } transition duration-300 transform hover:scale-105`}
             onClick={() => onSelect(category.id)}
           >

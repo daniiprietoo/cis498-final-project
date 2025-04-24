@@ -47,17 +47,17 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8F8F8] py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h1 className="text-center text-4xl font-extrabold text-gray-900">
-            Dev Tools Platform
+          <h1 className="text-center text-4xl font-extrabold font-mono text-gray-900">
+          <span className="text-[#ff4500]">DevTools</span> Platform
           </h1>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold font-mono tracking-tight text-gray-900">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-center text-sm text-[#666666]">
+          <p className="mt-2 text-center font-mono text-sm text-[#666666]">
             Or{" "}
             <Link 
               href="/auth/register" 
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium font-monotext-[#ff4500] hover:text-[#e03f00]"
             >
               create a new account
             </Link>
@@ -75,7 +75,7 @@ export default function LoginPage() {
         )}
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="-space-y-px rounded-md shadow-sm">
+          <div className="-space-y-px rounded-md shadow-sm font-mono">
             <div>
               <label htmlFor="email" className="sr-only">
                 Email address
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -104,7 +104,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative flex w-full justify-center rounded-md border border-transparent font-mono bg-[#ff4500] py-2 px-4 text-sm font-medium text-white hover:bg-[#e03f00] focus:outline-none focus:ring-2 focus:ring-[#e03f00] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </button>
@@ -127,7 +127,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-[#F8F8F8] px-2 text-gray-500">
+              <span className="bg-[#F8F8F8] font-mono px-2 text-gray-500">
                 Or continue with
               </span>
             </div>
@@ -136,7 +136,7 @@ export default function LoginPage() {
           <div className="mt-6">
             <button
               onClick={handleGithubSignIn}
-              className="group relative flex w-full justify-center items-center gap-3 rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-[#F8F8F8] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="group relative flex w-full justify-center items-center gap-3 rounded-md border font-mono border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-[#F8F8F8] focus:outline-none focus:ring-2 focus:ring-[#e03f00] focus:ring-offset-2"
             >
               <FaGithub className="h-5 w-5" />
               <span>Continue with GitHub</span>

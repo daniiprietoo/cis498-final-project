@@ -32,8 +32,8 @@ export default function UserSidebar() {
             className={
               `flex items-center p-3 rounded-md transition ` +
               (active === href
-                ? "bg-indigo-50 text-indigo-600"
-                : "text-gray-700 hover:bg-indigo-50 hover:text-indigo-600")
+                ? "bg-orange-100 text-[#ff4500]"
+                : "text-gray-700 hover:bg-orange-100 hover:text-[#e03f00]")
             }
           >
             <Icon className="mr-3" />
