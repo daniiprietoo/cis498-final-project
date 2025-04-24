@@ -15,7 +15,7 @@ export default function CategorySelector({
               selectedCategory === category.id
                 ? "bg-[#FF4500] text-white"
                 : "bg-white text-gray-700 border border-gray-200 hover:border-indigo-600"
-            } transition`}
+            } transition duration-300 transform hover:scale-105`}
             onClick={() => onSelect(category.id)}
           >
             {category.name}

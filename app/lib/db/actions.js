@@ -93,7 +93,7 @@ export const BUSINESS_QUERIES = {
     });
   },
   updateBusiness: async (id, name, description) => {
-    await prisma.business.update({
+    return prisma.business.update({
       where: { id },
       data: { businessName: name, businessDescription: description },
     });
@@ -244,6 +244,15 @@ export const BUSINESS_QUERIES = {
       orders,
       supportRequests,
     };
+  },
+};
+
+export const BUSINESS_MUTATIONS = {
+  updateBusiness: (id, name, description) => {
+    return prisma.business.update({
+      where: { id },
+      data: { name, description },
+    });
   },
 };
 
