@@ -142,9 +142,11 @@ export const BUSINESS_QUERIES = {
           select: {
             id: true,
             name: true,
+            description: true,
             mainImage: true,
             price: true,
             category: true,
+            url: true,
             status: true,
             // nested reviews on each product
             reviews: {
@@ -201,6 +203,7 @@ export const BUSINESS_QUERIES = {
       price: p.price.toString(),
       category: p.category,
       status: p.status,
+      url: p.url,
       reviews: p.reviews.map((r) => ({
         id: r.id,
         rating: r.rating.toString(),
@@ -543,5 +546,28 @@ export const PRODUCT_QUERIES = {
       },
       orderBy: { createdAt: "desc" },
     });
+  },
+};
+export const PRODUCT_MUTATIONS = {
+  updateProduct: async (id, data) => {
+    // 1) check if product exists
+    const product = await prisma.product.findUnique({ where: { id } });
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    // 2) update product
+    return prisma.product.update({
+      where: { id },
+      data,
+    });
+  },
+  deleteProduct: async (id) => {
+    const product = await prisma.product.findUnique({ where: { id } });
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    return prisma.product.delete({ where: { id } });
   },
 };
