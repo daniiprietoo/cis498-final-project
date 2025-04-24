@@ -21,6 +21,7 @@ export default function ReviewSection({ reviews: initialReviews, productId }) {
       alert("You must be logged in to leave a review.");
       return;
     }
+
     if (newReview.rating < 1 || newReview.rating > 5) {
       alert("Please select a rating between 1 and 5.");
       return;

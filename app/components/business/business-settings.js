@@ -2,15 +2,42 @@
 
 import { useState } from "react";
 import { BUSINESS_QUERIES } from "@/lib/db/actions";
+import { useBusiness } from "./business-context";
 
 export default function BusinessSettingsForm({ initialData }) {
+  const { setBusiness } = useBusiness();
   const [name, setName] = useState(initialData.name);
   const [description, setDescription] = useState(initialData.description);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await BUSINESS_QUERIES.updateBusiness(initialData.id, name, description);
-    // you can add a toast or revalidate here
+
+    const fd = new FormData(e.currentTarget);
+    fd.append("name", name);
+    fd.append("description", description);
+
+    try {
+      const res = await fetch("/api/business/info", {
+        method: "PUT",
+        body: fd,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update business settings");
+      }
+
+      const { business } = await res.json();
+      setBusiness(() => {
+        return {
+          ...business,
+          name: business.name,
+          description: business.description,
+        };
+      });
+    } catch (error) {
+      console.error("Error updating business settings:", error);
+      alert("Failed to update business settings. Please try again.");
+    }
   };
 
   return (

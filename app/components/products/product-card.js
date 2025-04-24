@@ -35,7 +35,7 @@ export default function ProductCard({ tool }) {
             <span className="mx-2">•</span>
             <span>{tool.reviewsCount}</span>
           </div>
-          <span className="text-lg font-bold text-gray-900">${tool.price}</span>
+          <span className="text-lg font-bold text-gray-900 transform transition-transform duration-200 group-hover:-translate-x-10">${tool.price}</span>
         </div>
       </div>
 
