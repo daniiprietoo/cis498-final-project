@@ -16,5 +16,5 @@ export default function AdminIndex() {
     }
   }
   , [admin, router]);
-  return <AdminBusiness business={admin.business} />;
+  return <AdminBusiness />;
 }
