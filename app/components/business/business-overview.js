@@ -1,19 +1,14 @@
 export default function BusinessOverview({ business }) {
   const totalProducts = business.products.length;
 
-  const totalOrders = business.products.reduce(
-    (sum, product) => sum + (product.orderItems?.length || 0),
+  // if you want “number of distinct orders”:
+  const totalOrders = new Set(business.orders.map((o) => o.orderId)).size;
+  // or if you really meant “line‐items sold”, use business.orders.length
+
+  const revenue = business.orders.reduce(
+    (sum, o) => sum + parseFloat(o.total),
     0
   );
-
-  const revenue = business.products.reduce((sum, product) => {
-    const productRevenue =
-      product.orderItems?.reduce(
-        (orderSum, oi) => orderSum + Number(oi.order?.amount || 0),
-        0
-      ) || 0;
-    return sum + productRevenue;
-  }, 0);
 
   const pendingRequests = business.supportRequests.filter(
     (r) => r.status === "OPEN"
