@@ -248,12 +248,8 @@ export const BUSINESS_QUERIES = {
 };
 
 export const BUSINESS_MUTATIONS = {
-  updateBusiness: (id, name, description) => {
-    return prisma.business.update({
-      where: { id },
-      data: { name, description },
-    });
-  },
+  updateBusiness: (id, data) => prisma.business.update({ where: { id }, data }),
+  deleteBusiness: (id) => prisma.business.delete({ where: { id } }),
 };
 
 export const USER_QUERIES = {
@@ -423,7 +419,6 @@ export const USER_MUTATIONS = {
   createUser: (data) => prisma.user.create({ data }),
   updateUser: (id, data) => prisma.user.update({ where: { id }, data }),
   deleteUser: (id) => prisma.user.delete({ where: { id } }),
-  updateReview: (id, data) => prisma.review.update({ where: { id }, data }),
   updateSupportRequest: (id, data) =>
     prisma.supportRequest.update({ where: { id }, data }),
 };
