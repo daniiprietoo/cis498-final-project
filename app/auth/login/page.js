@@ -44,7 +44,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8F8F8] py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8F8F8] font-mono py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
           <h1 className="text-center text-4xl font-extrabold font-mono text-gray-900">
@@ -57,7 +57,7 @@ export default function LoginPage() {
             Or{" "}
             <Link 
               href="/auth/register" 
-              className="font-medium font-monotext-[#ff4500] hover:text-[#e03f00]"
+              className="font-medium font-mono text-[#ff4500] hover:text-[#e03f00]"
             >
               create a new account
             </Link>

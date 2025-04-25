@@ -1,5 +1,5 @@
 // components/dashboard/support-tab.js
-import Image from 'next/image';
+import Link from 'next/link';
 import { FiAlertCircle, FiCheckCircle, FiClock } from 'react-icons/fi';
 
 export default function SupportTab({ supportRequests }) {
@@ -22,12 +22,11 @@ export default function SupportTab({ supportRequests }) {
     return (
       <div className="text-center py-8">
         <p className="text-gray-500">You don't have any support requests.</p>
-        <a 
-          href="/support/new" 
-          className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition"
-        >
+        
+        <Link href="/user/support/request" 
+        className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition">
           Create Support Request
-        </a>
+        </Link>
       </div>
     );
   }
@@ -58,15 +57,24 @@ export default function SupportTab({ supportRequests }) {
           
           <div className="flex justify-between items-center text-xs text-gray-500">
             <span>Created on {formatDate(request.createdAt)}</span>
-            <a 
-              href={`/support/${request.id}`}
-              className="text-[#ff4500] hover:text-[#e03f00] transition"
-            >
-              View Details
-            </a>
+            <Link
+        href={`/user/support/${request.id}`}
+        className="text-[#ff4500] hover:text-[#e03f00] transition"
+      >
+        View Details
+      </Link>
           </div>
         </div>
       ))}
+
+      <div className="text-center pt-4">
+        <Link
+          href="/user/support/request"
+          className="inline-block bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition"
+        >
+          Create Support Request
+        </Link>
+      </div>
     </div>
   );
 }

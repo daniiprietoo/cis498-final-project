@@ -90,17 +90,17 @@ export default function RegisterPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#F8F8F8] py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h1 className="text-center text-4xl font-extrabold text-gray-900">
-            Dev Tools Platform
+          <h1 className="text-center text-4xl font-extrabold font-mono text-gray-900">
+          <span className="text-[#ff4500]">DevTools</span> Platform
           </h1>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold font-mono tracking-tight text-gray-900">
             Create your account
           </h2>
-          <p className="mt-2 text-center text-sm text-[#666666]">
+          <p className="mt-2 text-center font-mono text-sm text-[#666666]">
             Or{" "}
             <Link 
               href="/auth/login" 
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium font-mono text-[#ff4500] hover:text-[#e03f00]"
             >
               sign in to existing account
             </Link>
@@ -117,7 +117,7 @@ export default function RegisterPage() {
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-6 font-mono" onSubmit={handleSubmit}>
           <div className="space-y-4">
             {/* Account Type Selection */}
             <div>
@@ -133,7 +133,7 @@ export default function RegisterPage() {
                     value="USER"
                     checked={accountType === "USER"}
                     onChange={() => setAccountType("USER")}
-                    className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="h-4 w-4 border-gray-300 text-[#ff4500] focus:ring-[#e03f00]"
                   />
                   <label htmlFor="user-account" className="ml-2 block text-sm text-gray-900">
                     Individual
@@ -147,7 +147,7 @@ export default function RegisterPage() {
                     value="BUSINESS"
                     checked={accountType === "BUSINESS"}
                     onChange={() => setAccountType("BUSINESS")}
-                    className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="h-4 w-4 border-gray-300 text-[#ff4500] focus:ring-[#e03f00]"
                   />
                   <label htmlFor="business-account" className="ml-2 block text-sm text-gray-900">
                     Business
@@ -169,7 +169,7 @@ export default function RegisterPage() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                   placeholder={accountType === "BUSINESS" ? "Contact Person Name" : "Full Name"}
                 />
               </div>
@@ -185,7 +185,7 @@ export default function RegisterPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                   placeholder="Email address"
                 />
               </div>
@@ -201,7 +201,7 @@ export default function RegisterPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                   placeholder="Password"
                   minLength={8}
                 />
@@ -218,7 +218,7 @@ export default function RegisterPage() {
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#ff4500] focus:outline-none focus:ring-[#e03f00] sm:text-sm"
                   placeholder="Confirm password"
                   minLength={8}
                 />
@@ -230,9 +230,6 @@ export default function RegisterPage() {
               <div className="space-y-4 mt-4 pt-4 border-t text-gray-900 border-gray-200">
                 <h3 className="text-lg font-medium ">Business Information</h3>
                 <div>
-                  <label htmlFor="businessName" className="block text-sm font-medium text-gray-700 mb-1">
-                    Business Name
-                  </label>
                   <input
                     id="businessName"
                     name="businessName"
@@ -240,21 +237,20 @@ export default function RegisterPage() {
                     required
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-[#ff4500] focus:ring-[#e03f00] sm:text-sm"
+                    placeholder="Business name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="businessDescription" className="block text-sm font-medium text-gray-700 mb-1">
-                    Business Description
-                  </label>
+                
                   <textarea
                     id="businessDescription"
                     name="businessDescription"
                     rows="3"
                     value={businessDescription}
                     onChange={(e) => setBusinessDescription(e.target.value)}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    placeholder="Tell us about your business..."
+                    className="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 focus:border-[#ff4500] focus:ring-[#e03f00] sm:text-sm"
+                    placeholder="Business description"
                   ></textarea>
                 </div>
               </div>
@@ -265,7 +261,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#ff4500] py-2 px-4 text-sm font-medium text-white hover:bg-[#e03f00] focus:outline-none focus:ring-2 focus:ring-[#e03f00] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? "Creating account..." : "Create account"}
             </button>
@@ -277,17 +273,17 @@ export default function RegisterPage() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300" />
             </div>
-            <div className="relative flex justify-center text-sm">
+            <div className="relative flex justify-center text-sm font-mono">
               <span className="bg-[#F8F8F8] px-2 text-gray-500">
                 Or continue with
               </span>
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 font-mono">
             <button
               onClick={handleGithubSignIn}
-              className="group relative flex w-full justify-center items-center gap-3 rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-[#F8F8F8] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="group relative flex w-full justify-center items-center gap-3 rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-[#F8F8F8] focus:outline-none focus:ring-2 focus:ring-[#e03f00] focus:ring-offset-2"
             >
               <FaGithub className="h-5 w-5" />
               <span>Continue with GitHub</span>

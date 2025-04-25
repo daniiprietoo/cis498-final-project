@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Dev Tools Marketplace",
+  title: "DevTools Marketplace",
   description: "A platform for developers to access tools and resources.",
 };
 
