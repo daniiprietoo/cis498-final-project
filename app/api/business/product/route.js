@@ -89,15 +89,21 @@ export async function PUT(request) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
   try {
-    const form = await request.formData();
-    const productId = form.get("id");
-    const name = form.get("name");
-    const description = form.get("description");
-    const price = form.get("price");
-    const category = form.get("category");
-    const url = form.get("url");
-    const image = form.get("image");
-    const status = form.get("status");
+    const {
+      id: productId,
+      name,
+      description,
+      price,
+      category,
+      url,
+      status,
+    } = await request.json();
+
+    if (!productId)
+      return NextResponse.json(
+        { error: "Product ID is required" },
+        { status: 400 }
+      );
 
     if (!name || typeof name !== "string")
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
@@ -116,32 +122,21 @@ export async function PUT(request) {
         { error: "Category is required" },
         { status: 400 }
       );
-
-    // 4) change image in Vercel Blob if new image is provided
-    let imageUrl = null;
-    if (image) {
-      const { url } = await put(
-        `products/${session.user.businessId}/${Date.now()}-${image.name || "upload"}`,
-        image,
-        {
-          access: "public",
-          contentType: image.type,
-          orgId: process.env.VERCEL_ORG_ID,
-          projectId: process.env.VERCEL_PROJECT_ID,
-          token: process.env.BLOB_READ_WRITE_TOKEN,
-        }
+    if (!status || typeof status !== "string")
+      return NextResponse.json(
+        { error: "Status is required" },
+        { status: 400 }
       );
-      imageUrl = url;
-    }
+
     const updated = await PRODUCT_MUTATIONS.updateProduct(productId, {
       name: name,
       description: description,
       price: Number(price),
-      category,
+      category: category,
       url: url || null,
-      mainImage: imageUrl,
       status: status.toUpperCase(),
     });
+
     console.log("Updated product", updated);
     return NextResponse.json(
       { message: "Product updated successfully", updated },

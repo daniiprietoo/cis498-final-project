@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useBusiness } from "./business-context";
 import { FiCheck, FiX } from "react-icons/fi";
 
 export default function EditProductForm({ product, onCancel, onSave }) {
-  const { business, setBusiness } = useBusiness();
   const [form, setForm] = useState({
     id: product.id,
     name: product.name,
@@ -13,7 +11,6 @@ export default function EditProductForm({ product, onCancel, onSave }) {
     price: product.price,
     category: product.category,
     url: product.url || "",
-    image: null,
     status: product.status || "",
   });
   const [submitting, setSubmitting] = useState(false);
@@ -21,18 +18,17 @@ export default function EditProductForm({ product, onCancel, onSave }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setSubmitting(true);
-    const fd = new FormData();
-    Object.entries(form).forEach(([k, v]) => {
-      if (k === "image" && v) fd.append("image", v);
-      else fd.append(k, v);
-    });
-
     const res = await fetch(`/api/business/product`, {
       method: "PUT",
-      body: fd,
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     if (!res.ok) {
       alert("Update failed");
+      const { error } = await res.json();
+      console.log(error);
       setSubmitting(false);
       return;
     }
@@ -127,15 +123,6 @@ export default function EditProductForm({ product, onCancel, onSave }) {
             <option value="INACTIVE">Inactive</option>
           </select>
         </div>
-      </div>
-      <div>
-        <label className="block text-sm">Main Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setForm({ ...form, image: e.target.files[0] })}
-          className="mt-1 w-full"
-        />
       </div>
       <div className="flex space-x-2">
         <button

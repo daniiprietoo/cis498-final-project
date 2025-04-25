@@ -549,16 +549,10 @@ export const PRODUCT_QUERIES = {
   },
 };
 export const PRODUCT_MUTATIONS = {
-  updateProduct: async (id, data) => {
-    // 1) check if product exists
-    const product = await prisma.product.findUnique({ where: { id } });
-    if (!product) {
-      throw new Error("Product not found");
-    }
+  updateProduct: async (productId, data) => {
 
-    // 2) update product
     return prisma.product.update({
-      where: { id },
+      where: { id: productId },
       data,
     });
   },
