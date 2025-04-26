@@ -25,7 +25,6 @@ export default async function ProductsPage({ searchParams }) {
     searchTermLower
   );
 
-  // 4) compute avgRating, count & expose sellerName
   const products = productsData.map((p) => {
     const count = p.reviews.length;
     const avg = count

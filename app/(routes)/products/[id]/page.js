@@ -26,7 +26,7 @@ export default async function ProductPage({ params }) {
     mainImage: raw.mainImage,
     createdAt: raw.createdAt.toISOString(), // Date → string
     updatedAt: raw.updatedAt.toISOString(),
-    seller: { name: raw.sellerName }, // nest back for ProductDetails
+    seller: { name: raw.sellerName, id: raw.seller.id }, // nest back for ProductDetails
     avgRating: raw.avgRating,
     reviewsCount: raw.reviewsCount,
     reviews: raw.reviews.map((r) => ({

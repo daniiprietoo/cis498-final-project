@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { FiHeart as Heart } from 'react-icons/fi';
 
@@ -62,9 +63,9 @@ export default function ProductDetails({ product }) {
 
         <div className="text-sm text-gray-500">
           Sold by{' '}
-          <span className="font-medium text-[#ff4500]">
+          <Link href={`/seller/${product.seller.id}`} className="font-medium text-[#ff4500]">
             {product.seller.name}
-          </span>
+          </Link>
         </div>
       </div>
     </div>
