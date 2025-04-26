@@ -1,12 +1,11 @@
 "use client";
+
 import { useCart } from "@/components/cart/cart-context";
 import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, total } = useCart();
   const router = useRouter();
-
-  console.log("Cart items:", items);
 
   const handlePlaceOrder = async () => {
     const res = await fetch("/api/orders", {
@@ -20,42 +19,92 @@ export default function CartPage() {
     }
     const { orderId } = await res.json();
     clearCart();
-    router.push(`/orders/${orderId}`);
+    router.push(`/orders/${orderId}/pay`);
   };
 
   if (items.length === 0) {
-    return <p>Your cart is empty.</p>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <p className="text-gray-500 text-lg">Your cart is empty.</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>My Cart</h1>
-      <ul>
-        {items.map((p) => (
-          <li key={p.id}>
-            {p.name} ×
-            <input
-              type="number"
-              value={p.qty}
-              onChange={(e) => updateQuantity(p.id, +e.target.value)}
-              min="1"
-            />
-            <button onClick={() => removeItem(p.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+    <div className="min-h-screen bg-gray-100 py-10">
+      <div className="container mx-auto px-4 space-y-8">
+        <h1 className="text-3xl font-bold text-gray-800">My Cart</h1>
 
-      <p>Total: ${total.toFixed(2)}</p>
-      <div className="space-x-2">
-        <button onClick={clearCart} className="px-4 py-2 bg-gray-200 rounded">
-          Clear Cart
-        </button>
-        <button
-          onClick={handlePlaceOrder}
-          className="px-4 py-2 bg-[#FF4500] text-white rounded hover:bg-[#e03f00]"
-        >
-          Place Order
-        </button>
+        <div className="bg-white shadow rounded-lg divide-y divide-gray-200">
+          {items.map((p) => (
+            <div
+              key={p.id}
+              className="flex flex-col md:flex-row items-center justify-between p-6 space-y-4 md:space-y-0"
+            >
+              {/* Product Info */}
+              <div className="flex items-center space-x-4">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-16 h-16 object-cover rounded"
+                />
+                <div>
+                  <h2 className="text-lg font-medium text-gray-800">
+                    {p.name}
+                  </h2>
+                  <p className="text-gray-600">
+                    ${Number(p.price).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+
+              {/* Quantity & Remove */}
+              <div className="flex items-center space-x-4">
+                <input
+                  type="number"
+                  value={p.qty}
+                  min="1"
+                  onChange={(e) =>
+                    updateQuantity(p.id, +e.target.value)
+                  }
+                  className="w-20 text-center border border-gray-300 rounded focus:ring-2 focus:ring-orange-300"
+                />
+                <button
+                  onClick={() => removeItem(p.id)}
+                  className="text-red-600 hover:text-red-800 transition"
+                >
+                  Remove
+                </button>
+              </div>
+
+              {/* Subtotal */}
+              <p className="text-gray-800 font-semibold">
+                ${(Number(p.price) * p.qty).toFixed(2)}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+          <button
+            onClick={clearCart}
+            className="text-red-600 hover:text-red-800 transition"
+          >
+            Clear Cart
+          </button>
+
+          <div className="text-xl font-semibold text-gray-800">
+            Total: ${total.toFixed(2)}
+          </div>
+
+          <button
+            onClick={handlePlaceOrder}
+            className="bg-[#FF4500] text-white px-6 py-3 rounded hover:bg-[#e03f00] transition"
+          >
+            Place Order
+          </button>
+        </div>
       </div>
     </div>
   );

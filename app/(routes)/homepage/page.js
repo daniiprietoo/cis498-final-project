@@ -1,5 +1,6 @@
 import SearchBar from "@/components/ui/search-bar";
 import FeaturedProducts from "@/components/products/featured-components";
+import ChatBot from "@/components/chatbot/chat-bot";
 import {
   FiChevronRight as ChevronRight,
   FiCode as Code,
@@ -29,7 +30,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-mono font-extrabold text-[#FF4500] mb-4">
-              EMPOWERING DEVELOPERS, SIMPLIFYING WORKFLOWS.
+                EMPOWERING DEVELOPERS, SIMPLIFYING WORKFLOWS.
               </h1>
               <p className="text-xl mb-6 text-black">
                 Discover premium plugins, themes, and extensions to supercharge
@@ -44,7 +45,7 @@ export default function HomePage() {
                 </a>
                 <a
                   href="/auth/register"
-                  className="bg-[#000000] border-white px-6 py-3 rounded-lg font-bold hover:bg-[#808080] transition"
+                  className="bg-[#000000] font-bold text-white px-6 py-3 rounded-lg hover:bg-[#808080] transition"
                 >
                   Become a Seller
                 </a>
@@ -186,6 +187,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <ChatBot />
     </div>
   );
 }
