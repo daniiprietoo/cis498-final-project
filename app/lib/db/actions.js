@@ -499,7 +499,7 @@ export const PRODUCT_QUERIES = {
     const product = await prisma.product.findUnique({
       where: { id },
       include: {
-        seller: { select: { name: true } },
+        seller: { select: { name: true, id: true } },
         reviews: {
           select: {
             id: true,
