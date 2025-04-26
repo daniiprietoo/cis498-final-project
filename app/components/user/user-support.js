@@ -33,6 +33,7 @@ export default function SupportTab({ supportRequests }) {
 
   return (
     <div className="space-y-4 bg-white p-4 rounded-lg shadow-sm">
+      <h2 className="text-2xl font-bold mb-4">Support Requests</h2>
       {supportRequests.map((request) => (
         <div key={request.id} className="border rounded-lg p-4 hover:shadow-sm transition">
           <div className="flex justify-between items-center mb-2">

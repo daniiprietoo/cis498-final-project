@@ -31,7 +31,8 @@ export default function BusinessProductsTab() {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Your Products</h2>
+      <div className="space-y-6 p-4 bg-white shadow rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">Products</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border rounded">
           <thead className="bg-gray-100">
@@ -111,6 +112,7 @@ export default function BusinessProductsTab() {
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );
