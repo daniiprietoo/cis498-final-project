@@ -37,7 +37,7 @@ export default function AddProductForm() {
       className="space-y-6 bg-white p-6 shadow rounded-lg"
     >
       {error && <p className="text-red-500">{error}</p>}
-
+      <h2 className="text-2xl font-bold">New Product</h2>
       <div>
         <label htmlFor="name" className="block text-sm font-medium">
           Product Name

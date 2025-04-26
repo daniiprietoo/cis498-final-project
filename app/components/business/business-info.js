@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FiMail, FiCalendar, FiBriefcase } from "react-icons/fi";
 
 export default function BusinessInfo({ user, business }) {
@@ -55,12 +56,12 @@ export default function BusinessInfo({ user, business }) {
           </div>
 
           <div className="mt-4">
-            <a
-              href="/settings"
+            <Link
+              href="/business/settings"
               className="text-[#ff4500] text-sm hover:text-[#e03f00] transition"
             >
               Edit Profile
-            </a>
+            </Link>
           </div>
         </>
       )}
