@@ -2,6 +2,7 @@
 
 import { FaBars, FaUser } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import { FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
@@ -60,10 +61,11 @@ export function NavBar() {
           {status !== "loading" && (
             <div className="hidden md:flex items-center">
               {status === "authenticated" && (
-                <button 
+                <button
                   onClick={() => router.push("/cart")}
-                  className="mr-2 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF4500] hover:bg-[#e03f00] hover:cursor-pointer">
-                  Cart
+                  className="mr-2 p-2 rounded-md bg-[#FF4500] hover:bg-[#e03f00] transition"
+                >
+                  <FiShoppingCart className="h-5 w-5 text-white" />
                 </button>
               )}
               <button
@@ -144,6 +146,14 @@ export function NavBar() {
                     </div>
                   )}
                 </button>
+                {status === "authenticated" && (
+                  <button
+                    onClick={() => router.push("/cart")}
+                    className="mt-4 ml-2 p-2 rounded-md bg-[#FF4500] hover:bg-[#e03f00] transition"
+                  >
+                    <FiShoppingCart className="h-5 w-5 text-white" />
+                  </button>
+                )}
                 {status === "authenticated" && (
                   <button
                     onClick={handleLogout}
