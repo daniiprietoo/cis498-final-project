@@ -10,7 +10,7 @@ export default async function OrderDetailPage({ params: { orderId } }) {
   if (!session?.user) redirect("/auth/login");
 
   // load the one order, scoped to this user
-  const raw = await USER_QUERIES.getOrderForUser(session.user.id, orderId);
+  const raw = await USER_QUERIES.getOrderForUser(orderId);
   if (!raw) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">

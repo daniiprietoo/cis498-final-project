@@ -3,9 +3,17 @@
 import { FiStar as Star, FiShoppingCart } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useCart } from "@/components/cart/cart-context";
 
 export default function ProductCard({ tool }) {
   const router = useRouter();
+  const { addItem } = useCart();
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    addItem(tool, 1);
+    console.log(`${tool.name} added to cart`);
+  }
 
   return (
     <div
@@ -40,11 +48,8 @@ export default function ProductCard({ tool }) {
       </div>
 
       <button
-        onClick={(e) => {
-          e.stopPropagation();
-          console.log(`${tool.name} added to cart`);
-        }}
-        className="absolute bottom-3 right-3 bg-[#FF4500] text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+        onClick={handleAddToCart}
+        className="absolute bottom-3 right-3 bg-[#FF4500] text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:scale-110 transform duration-200"
       >
         <FiShoppingCart className="h-5 w-5" />
       </button>

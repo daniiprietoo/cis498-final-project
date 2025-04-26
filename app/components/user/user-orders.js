@@ -56,7 +56,7 @@ export default function OrdersTab({ orders }) {
               className="border-b border-gray-100 hover:bg-[#F8F8F8] text-[#666666]"
             >
               <td className="py-3 px-2 text-sm font-medium">
-                #{order.id.substring(0, 8)}
+                #{order.id}
               </td>
               <td className="py-3 px-2 text-md text-[#666666]">
                 {formatDate(order.orderDate)}

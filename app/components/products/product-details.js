@@ -3,13 +3,26 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FiHeart as Heart } from 'react-icons/fi';
+import { useCart } from '@/components/cart/cart-context';
 
 export default function ProductDetails({ product }) {
   const [qty, setQty] = useState(1);
+  const { addItem } = useCart();
+
+  if (!product) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-gray-500">Loading...</p>
+      </div>
+    );
+  }
+
+
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    console.log(`Added ${qty} × ${product.name} to cart`);
+    addItem(product, qty);
+    console.log(`${product.name} added to cart`);
     // TODO: call your cart store / API here
   };
 
@@ -63,7 +76,7 @@ export default function ProductDetails({ product }) {
 
         <div className="text-sm text-gray-500">
           Sold by{' '}
-          <Link href={`/seller/${product.seller.id}`} className="font-medium text-[#ff4500]">
+          <Link href={`/seller/${product.sellerId}`} className="font-medium text-[#ff4500]">
             {product.seller.name}
           </Link>
         </div>
