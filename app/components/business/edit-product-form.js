@@ -128,7 +128,7 @@ export default function EditProductForm({ product, onCancel, onSave }) {
         <button
           type="submit"
           disabled={submitting}
-          className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
+          className="px-4 py-2 bg-[#ff4500] text-white rounded disabled:opacity-50"
         >
           {submitting ? "Saving…" : <FiCheck />}
         </button>
