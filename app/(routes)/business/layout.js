@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children }) {
         {/* header/banner */}
         <div className="bg-gradient-to-r from-orange-200 to-[#F8F8F8] text-white py-12">
           <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold text-[#ff4500]">
               {session.user.businessName}Dashboard
             </h1>
             <p className="opacity-90 text-black">Manage your profile, orders, reviews…</p>

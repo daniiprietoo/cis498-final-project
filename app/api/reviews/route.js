@@ -9,9 +9,6 @@ export async function POST(request) {
     if (!session)
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
-    // if (session.user.role !== "USER")
-    //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
     const form = await request.formData();
 
     const rating = form.get("rating");
