@@ -19,7 +19,7 @@ export default function CartPage() {
     }
     const { orderId } = await res.json();
     clearCart();
-    router.push(`/orders/${orderId}/pay`);
+    router.push(`/orders/${orderId}`);
   };
 
   if (items.length === 0) {
@@ -44,7 +44,7 @@ export default function CartPage() {
               {/* Product Info */}
               <div className="flex items-center space-x-4">
                 <img
-                  src={p.image}
+                  src={p.mainImage}
                   alt={p.name}
                   className="w-16 h-16 object-cover rounded"
                 />
@@ -52,9 +52,7 @@ export default function CartPage() {
                   <h2 className="text-lg font-medium text-gray-800">
                     {p.name}
                   </h2>
-                  <p className="text-gray-600">
-                    ${Number(p.price).toFixed(2)}
-                  </p>
+                  <p className="text-gray-600">${Number(p.price).toFixed(2)}</p>
                 </div>
               </div>
 
@@ -64,9 +62,7 @@ export default function CartPage() {
                   type="number"
                   value={p.qty}
                   min="1"
-                  onChange={(e) =>
-                    updateQuantity(p.id, +e.target.value)
-                  }
+                  onChange={(e) => updateQuantity(p.id, +e.target.value)}
                   className="w-20 text-center border border-gray-300 rounded focus:ring-2 focus:ring-orange-300"
                 />
                 <button
