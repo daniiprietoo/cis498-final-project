@@ -23,7 +23,7 @@ export default function RegisterPage() {
     setIsLoading(true);
     setError("");
 
-    // Validate inputs
+    /*INPUT VALIDATION*/
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       setIsLoading(false);
@@ -45,7 +45,7 @@ export default function RegisterPage() {
         ...(accountType === "BUSINESS" && { businessName, businessDescription }),
       };
 
-      const response = await fetch("/api/register", { // Use the consolidated endpoint
+      const response = await fetch("/api/register", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registrationData),
@@ -54,11 +54,10 @@ export default function RegisterPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        // Use the consistent 'message' key from the API response
         throw new Error(result.message || `HTTP error! status: ${response.status}`);
       }
 
-      // Auto sign-in after successful registration
+      /*SIGN IN*/
       const signInResult = await signIn("credentials", {
         email,
         password,
@@ -68,13 +67,11 @@ export default function RegisterPage() {
       if (signInResult?.error) {
         setError("Registration successful, but auto sign-in failed. Please log in manually.");
         setIsLoading(false);
-        router.push("/auth/login"); // Redirect to login on sign-in failure
+        router.push("/auth/login"); 
         return;
       }
 
-      // Redirect to appropriate dashboard
-      // Note: Consider redirecting based on the actual role returned in signInResult or session, not just accountType state
-      router.push(accountType === "BUSINESS" ? "/business/dashboard" : "/homepage"); // Adjust target routes if needed
+      router.push(accountType === "BUSINESS" ? "/business/dashboard" : "/homepage"); 
 
     } catch (error) {
       setError(error.message || "Something went wrong. Please try again.");

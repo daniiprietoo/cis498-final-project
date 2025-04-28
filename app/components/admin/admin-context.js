@@ -18,7 +18,7 @@ export function AdminProvider({ admin: initialAdmin, children }) {
 
 export function useAdmin() {
   const context = useContext(AdminContext);
-  if (!context) throw new Error("useAdmin must be inside AdminProvider"); // Fixed error message
+  if (!context) throw new Error("useAdmin must be inside AdminProvider"); 
   return context;
 }
 

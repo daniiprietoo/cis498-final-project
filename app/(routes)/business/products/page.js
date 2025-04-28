@@ -18,7 +18,7 @@ export default function ProductsPage() {
 
   console.log("Products for business:", business.products);
 
-  // Compute average rating and number of reviews
+  {/* AVERAGE NUMBER OF REVIEWS*/}
 
   const productsWithRatings = business.products.map((product) => {
     const totalRating = product.reviews.reduce((acc, review) => acc + review.rating, 0);

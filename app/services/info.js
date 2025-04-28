@@ -61,18 +61,26 @@ For any further assistance, please email help@devtools.io.
 `;
 
 export const careers = `
-We’re growing! DevTools Marketplace is hiring for the following roles:
-- Front-End Engineer (React/Next.js)
-- Back-End Engineer (Node.js/Prisma/PostgreSQL)
-- DevOps Engineer (AWS/GCP, CI/CD)
-- Product Manager
+DevTools Marketplace is growing—and we want you on our team! We’re hiring across multiple disciplines:
 
-Why work with us?
-- Fully remote, flexible schedules
-- Competitive salary + equity opportunities
-- Professional development budget to grow your skills
-- Quarterly hackathons & annual team retreats
+Open Positions:
+- Front‑End Engineer (React / Next.js)
+- Back‑End Engineer (Node.js / Prisma / PostgreSQL)
+- DevOps Engineer (AWS / GCP, CI / CD)
+- UX / UI Designer
+- Content Strategist & Technical Writer
+- Community Manager
 
-Submit your resume and portfolio to careers@devtools.io.
-Come build the future of developer tools with us!
+Why join us?
+- Fully remote, flexible schedules.
+- Competitive salary + equity opportunities.
+- Professional development budget & conference stipend.
+- Quarterly hackathons, annual team retreats, and a supportive culture.
+- Access to our full Creator Dashboard: analytics, version control integrations, and featured‑listing tools.
+
+Apply now:
+- View all openings: https://devtools.io/careers/openings
+- Submit resume & portfolio: https://devtools.io/careers/apply or email careers@devtools.io
+
+We’re committed to diversity, equity, and inclusion. Accommodations available upon request.
 `;

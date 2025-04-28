@@ -1,6 +1,3 @@
-// This is your Prisma schema file
-// Learn more about it at https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL") 
 
 }
-// NextAuth Models
+/*MODELS*/
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -56,7 +53,7 @@ enum Role {
   BUSINESS
 }
 
-// Application Models
+/*APP MODELS*/
 model User {
   id              String    @id @default(cuid())
   name            String?

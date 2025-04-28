@@ -17,7 +17,7 @@ export async function POST(request) {
     const reviewerId = form.get("reviewerId") || session.user.id;
     const createdAt = form.get("createdAt") || new Date().toISOString();
 
-    // Basic validation
+    /*VALIDATE FIELDS*/
     if (
       !rating ||
       isNaN(Number(rating)) ||
@@ -48,7 +48,6 @@ export async function POST(request) {
 
     let review;
 
-    // If so update it
     if (existingReview) {
       review = await prisma.review.update({
         where: { id: existingReview.id },
@@ -56,20 +55,17 @@ export async function POST(request) {
           rating: Number(rating),
           comment,
         },
-        include: { reviewer: { select: { name: true } } }, // ← add this
+        include: { reviewer: { select: { name: true } } }, 
       });
     } else {
       review = await prisma.review.create({
         data: {
           rating: Number(rating),
           comment,
-          // convert string to Date if you really need it, or drop this and let Prisma set
           createdAt: new Date(createdAt),
-          // only use nested connect – drop the scalar productId/reviewerId here
           reviewer: { connect: { id: reviewerId } },
           product: { connect: { id: productId } },
         },
-        // always include reviewer so frontend can read r.reviewer.name
         include: { reviewer: { select: { name: true } } },
       });
     }

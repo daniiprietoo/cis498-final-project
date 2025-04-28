@@ -1,8 +1,4 @@
-// components/dashboard/wishlist-tab.js
-import { FiShoppingCart, FiTrash2 } from "react-icons/fi";
 
-// Note: Since there's no wishlist table in your schema yet,
-// this is a placeholder component that you can implement later
 export default function WishlistTab() {
   return (
     <div className="text-center py-8">

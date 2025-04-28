@@ -11,7 +11,6 @@ export default function ReviewSection({ reviews: initialReviews, productId }) {
   const [showAll, setShowAll] = useState(false);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
 
-  // decide how many to show
   const list = showAll ? allReviews : allReviews.slice(0, 3);
 
   const handleSubmit = async (e) => {
@@ -42,10 +41,8 @@ export default function ReviewSection({ reviews: initialReviews, productId }) {
         body: fd,
       });
 
-      // your API returns { review, message }
       const { review: created } = await res.json();
 
-      // prepend new review into state
       setAllReviews((prev) => [created, ...prev]);
       setNewReview({ rating: 0, comment: "" });
     } catch (err) {

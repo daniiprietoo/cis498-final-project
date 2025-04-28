@@ -19,7 +19,7 @@ export default async function BusinessIndex({ params }) {
     return redirect('/404')
   }
 
-  // pull products out of the business object
+  /*Products from business*/
   const products = business.products || []
 
   return (

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 export default async function SupportDetailPage({ params: { id } }) {
-  // fetch the single request
+  /*ONE REQUEST*/
   const req = await prisma.supportRequest.findUnique({
     where: { id },
   });

@@ -19,7 +19,6 @@ export default function AdminUsers() {
     const deleted = await res.json();
     console.log("Deleted user:", deleted);
     alert("User deleted successfully");
-    // 1) update the context admin.users array
     setAdmin({ ...admin, users: admin.users.filter((u) => u.id !== id) });
   }
 
@@ -37,7 +36,7 @@ export default function AdminUsers() {
     setEditingId(null);
   }
   
-  // Start edit
+  /*EDIT*/
   function startEdit(user) {
     setEditingId(user.id);
     setEditForm({

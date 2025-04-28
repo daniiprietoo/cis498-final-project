@@ -26,7 +26,6 @@ export default function AddProductForm() {
       return;
     }
 
-    // on success, go back to list
     router.push("/business/products");
   }
 

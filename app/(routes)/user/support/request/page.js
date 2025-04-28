@@ -36,9 +36,19 @@ export default function NewSupportPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto py-8">
+    <div className="space-y-6 bg-[#F8F8F8] p-6 rounded-lg shadow-sm">
       <h2 className="text-2xl font-semibold mb-4">New Support Request</h2>
       {error && <div className="mb-4 text-red-600">{error}</div>}
+      {/*Email*/}
+      <div className="mb-6 text-sm text-center">
+        Or email us directly at{" "}
+        <a
+          href="mailto:support@devtools.io"
+          className="text-[#ff4500] hover:underline"
+        >
+          support@devtools.io
+        </a>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="subject" className="block text-sm font-medium">

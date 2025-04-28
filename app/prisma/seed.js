@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Helper to pick n random distinct items from an array
 function getRandomItems(arr, n) {
   const items = [...arr];
   const result = [];
@@ -13,7 +12,6 @@ function getRandomItems(arr, n) {
 }
 
 async function main() {
-  // 1. Seed Users (10 total: mix of ADMIN, USER, BUSINESS)
   const userData = [
     { name: 'Alice Admin',    email: 'alice.admin@example.com',   password: 'adminpass1',    role: 'ADMIN'    },
     { name: 'Bob Admin',      email: 'bob.admin@example.com',     password: 'adminpass2',    role: 'ADMIN'    },
@@ -27,7 +25,6 @@ async function main() {
     { name: 'Judy User',      email: 'judy.user@example.com',     password: 'userpass5',     role: 'USER'     }
   ];
 
-  // Attach common required fields
   const users = await Promise.all(
     userData.map((data, i) => {
       return prisma.user.create({
@@ -37,18 +34,16 @@ async function main() {
           customerId: `cust_${i + 1}`,
           paymentId: `pay_${i + 1}`,
         },
-        include: { business: true } // to get business objects for BUSINESS role
+        include: { business: true } 
       });
     })
   );
 
-  // Separate arrays
   const allUsers      = users;
   const normalUsers   = users.filter(u => u.role === 'USER');
   const businessUsers = users.filter(u => u.role === 'BUSINESS');
   const businesses    = businessUsers.map(u => u.business);
 
-  // 2. Seed Products (5 per business)
   const categories = ['plugins', 'themes', 'extensions', 'libraries'];
   const productPromises = [];
   businesses.forEach((biz) => {
@@ -70,7 +65,6 @@ async function main() {
   });
   const products = await Promise.all(productPromises);
 
-  // 3. Seed Orders & OrderItems (2 orders per normal user)
   for (const user of normalUsers) {
     for (let j = 1; j <= 2; j++) {
       const selected = getRandomItems(products, 3);
@@ -97,7 +91,6 @@ async function main() {
     }
   }
 
-  // 4. Seed Reviews (1–3 reviews per product)
   for (const product of products) {
     const count = Math.floor(Math.random() * 3) + 1;
     for (let k = 0; k < count; k++) {
@@ -113,7 +106,6 @@ async function main() {
     }
   }
 
-  // 5. Seed Support Requests (1 per user)
   for (const user of allUsers) {
     const biz = getRandomItems(businesses, 1)[0];
     await prisma.supportRequest.create({

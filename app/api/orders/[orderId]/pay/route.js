@@ -15,7 +15,7 @@ export async function POST(req, { params }) {
     return NextResponse.json({ error: "Order not found" }, { status: 404 });
   }
 
-  // Simulate payment processing
+  /*PROCESSING*/
   await new Promise((res) => setTimeout(res, 2000));
 
   const updated = await prisma.order.update({

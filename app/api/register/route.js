@@ -37,7 +37,7 @@ export async function POST(request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create the user and potentially the business in a transaction
+    /*NEW*/
     const user = await prisma.$transaction(async (tx) => {
       const newUser = await tx.user.create({
         data: {
@@ -45,14 +45,13 @@ export async function POST(request) {
           name, 
           password: hashedPassword,
           role: role === "BUSINESS" ? "BUSINESS" : "USER",
-          // Add emailVerified: null here if implementing verification later
         },
       });
 
       if (role === "BUSINESS") {
         await tx.business.create({
           data: {
-            userId: newUser.id, // Link using the newly created user's ID
+            userId: newUser.id, 
             name: businessName,
             description: businessDescription,
             status: "PENDING",
@@ -66,7 +65,7 @@ export async function POST(request) {
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
-    console.error("Registration error:", error); // Log the actual error
+    console.error("Registration error:", error);
     return NextResponse.json(
       { message: "An error occurred during registration. Please try again." },
       { status: 500 }

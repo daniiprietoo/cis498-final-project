@@ -19,7 +19,7 @@ export default async function ProductsPage({ searchParams }) {
     { id: "libraries", name: "Libraries" },
   ];
 
-  // 3) fetch products, include reviews + seller for metrics
+ /*Products and Reviews*/
   const productsData = await PRODUCT_QUERIES.getAllProductsWithReviews(
     selectedCategory,
     searchTermLower
@@ -55,8 +55,6 @@ export default async function ProductsPage({ searchParams }) {
           categories={categories}
           selectedCategory={selectedCategory}
         />
-
-        {/* product grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
           {products.map((tool) => (
             <ProductCard key={tool.id} tool={tool} />

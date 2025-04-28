@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { BUSINESS_QUERIES } from "@/lib/db/actions";
 import { useBusiness } from "./business-context";
 
 export default function BusinessSettingsForm({ initialData }) {

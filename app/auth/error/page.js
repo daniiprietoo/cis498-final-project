@@ -15,7 +15,6 @@ export default function ErrorPage() {
           </h2>
         </div>
 
-        {/* Wrap the component using useSearchParams in Suspense */}
         <Suspense
           fallback={
             <div className="text-center text-gray-500">
