@@ -9,7 +9,7 @@ export default function WishlistTab() {
       </p>
       <a
         href="/products"
-        className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-indigo-700 transition"
+        className="inline-block mt-4 bg-[#FF4500] text-white px-6 py-2 rounded hover:bg-[#e03f00] transition"
       >
         Browse Products
       </a>

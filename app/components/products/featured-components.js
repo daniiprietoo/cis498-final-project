@@ -8,13 +8,13 @@ export default async function FeaturedProducts() {
     id: p.id,
     name: p.name,
     description: p.description,
-    price: p.price.toString(), // Decimal → string (or p.price.toNumber())
+    price: p.price.toString(), 
     category: p.category,
     url: p.url,
     mainImage: p.mainImage,
     avgRating: p.avgRating.toFixed(1),
     reviewsCount: p.reviewsCount,
-    seller: p.seller, // already a string
+    seller: p.seller, 
   }));
 
   return (

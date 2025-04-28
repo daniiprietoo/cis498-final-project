@@ -30,7 +30,7 @@ export default function PaymentButton({ orderId, initialStatus }) {
     <button
       onClick={handlePay}
       disabled={loading}
-      className="bg-[#FF4500] text-white px-4 py-2 rounded hover:bg-indigo-700 flex items-center"
+      className="bg-[#FF4500] text-white px-4 py-2 rounded hover:bg-[#e03f00] flex items-center"
     >
       {loading ? "Processing…" : "Pay Now"}
     </button>

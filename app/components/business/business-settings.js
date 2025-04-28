@@ -61,7 +61,7 @@ export default function BusinessSettingsForm({ initialData }) {
         </div>
         <button
           type="submit"
-          className="bg-[#FF4500] text-white px-4 py-2 rounded hover:bg-indigo-700"
+          className="bg-[#FF4500] text-white px-4 py-2 rounded hover:bg-[#e03f00]"
         >
           Save Changes
         </button>
