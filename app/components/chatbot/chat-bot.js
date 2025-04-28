@@ -44,13 +44,12 @@ export default function ChatBot({ defaultOpen = false }) {
         </button>
       ) : (
         <div className="w-96 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden">
-          {/* Header */}
+
           <div className="bg-[#FF4500] text-white flex items-center justify-between p-3">
             <h2 className="text-lg font-extrabold ">Preto</h2>
             <button onClick={() => setIsOpen(false)} className="text-white text-xl leading-none">&times;</button>
           </div>
-
-          {/* Chat History */}
+          
           <div className="flex-1 w-full overflow-y-auto p-4 space-y-3 bg-gray-50">
             {loading && (
               <div className="text-gray-500 italic animate-pulse">Loading…</div>
@@ -62,7 +61,6 @@ export default function ChatBot({ defaultOpen = false }) {
             )}
           </div>
 
-          {/* Input Area */}
           <div className="p-3 border-t bg-white flex items-end gap-2">
             <textarea
               value={question}

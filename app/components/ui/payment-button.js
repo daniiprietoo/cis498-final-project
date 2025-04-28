@@ -19,7 +19,7 @@ export default function PaymentButton({ orderId, initialStatus }) {
     if (res.ok) {
       alert(data.message);
       setStatus(data.paymentStatus);
-      router.push(`/user/orders`); // re‑fetch the page data if you want
+      router.push(`/user/orders`); 
     } else {
       console.error("Payment error:", data.error);
       alert(data.error);

@@ -12,7 +12,7 @@ export async function POST(request) {
     if (session.user.role !== "BUSINESS")
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-    // 2) parse fields + file
+    /*AUTHENTICATED*/
     const form = await request.formData();
     const name = form.get("name");
     const description = form.get("description");
@@ -21,7 +21,6 @@ export async function POST(request) {
     const url = form.get("url");
     const image = form.get("image");
 
-    // 3) basic validation
     if (!name || typeof name !== "string")
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
     if (!description || typeof description !== "string")
@@ -40,7 +39,7 @@ export async function POST(request) {
         { status: 400 }
       );
 
-    // 4) upload to Vercel Blob
+    /*VERCEL*/
     const pathname = `products/${session.user.businessId}/${Date.now()}-${
       image.name || "upload"
     }`;
@@ -57,7 +56,7 @@ export async function POST(request) {
       mainImage = url;
     }
 
-    // 5) create in Prisma
+    /*PRISMA*/
     const product = await prisma.product.create({
       data: {
         name: form.get("name"),

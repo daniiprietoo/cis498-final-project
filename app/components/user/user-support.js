@@ -1,4 +1,4 @@
-// components/dashboard/support-tab.js
+
 import Link from 'next/link';
 import { FiAlertCircle, FiCheckCircle, FiClock } from 'react-icons/fi';
 
@@ -11,7 +11,6 @@ export default function SupportTab({ supportRequests }) {
     });
   };
 
-  // Status icon mapping
   const statusIcons = {
     OPEN: <FiAlertCircle className="text-yellow-500" />,
     CLOSED: <FiCheckCircle className="text-green-500" />,

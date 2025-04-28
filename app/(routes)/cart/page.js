@@ -41,7 +41,7 @@ export default function CartPage() {
               key={p.id}
               className="flex flex-col md:flex-row items-center justify-between p-6 space-y-4 md:space-y-0"
             >
-              {/* Product Info */}
+              {/* Product Details */}
               <div className="flex items-center space-x-4">
                 <img
                   src={p.mainImage}

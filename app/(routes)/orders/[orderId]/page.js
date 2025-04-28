@@ -9,7 +9,7 @@ export default async function OrderDetailPage({ params: { orderId } }) {
   const session = await auth();
   if (!session?.user) redirect("/auth/login");
 
-  // load the one order, scoped to this user
+  /*Load Order - Warn user*/
   const raw = await USER_QUERIES.getOrderForUser(orderId);
   if (!raw) {
     return (
@@ -19,7 +19,6 @@ export default async function OrderDetailPage({ params: { orderId } }) {
     );
   }
 
-  // strip Decimal/Date for the client
   const order = {
     ...raw,
     amount: raw.amount.toString(),

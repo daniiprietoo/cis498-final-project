@@ -50,7 +50,7 @@ export const ADMIN_QUERIES = {
       },
     });
 
-    // Convert Decimal → string on products and orders
+    /*DECIMAL TO STRING*/
     products.forEach((p) => {
       p.price = p.price.toString();
     });
@@ -70,7 +70,6 @@ export const BUSINESS_QUERIES = {
     return prisma.business.findUnique({
       where: { userId },
       include: {
-        // grab each product’s reviews + sales
         products: {
           include: {
             reviews: true,
@@ -99,7 +98,6 @@ export const BUSINESS_QUERIES = {
     });
   },
   getOrdersForBusiness: async (businessId) => {
-    // 1) load every product + its orderItems + the parent order + buyer
     const biz = await prisma.business.findUnique({
       where: { id: businessId },
       include: {
@@ -116,7 +114,6 @@ export const BUSINESS_QUERIES = {
     });
     if (!biz) return [];
 
-    // 2) flatten out one array of order‑records
     return biz.products.flatMap((p) =>
       p.orderItems.map((oi) => ({
         id: oi.id,
@@ -130,7 +127,6 @@ export const BUSINESS_QUERIES = {
   },
 
   getAllBusinessInfo: async (id) => {
-    // 1) Fetch via select
     const biz = await prisma.business.findUnique({
       where: { id },
       select: {
@@ -148,7 +144,6 @@ export const BUSINESS_QUERIES = {
             category: true,
             url: true,
             status: true,
-            // nested reviews on each product
             reviews: {
               select: {
                 id: true,
@@ -157,7 +152,6 @@ export const BUSINESS_QUERIES = {
                 createdAt: true,
               },
             },
-            // nested sales for each product
             orderItems: {
               select: {
                 id: true,
@@ -194,7 +188,6 @@ export const BUSINESS_QUERIES = {
     });
     if (!biz) return null;
 
-    // 2) Convert Decimal → string on products and reviews
     const products = biz.products.map((p) => ({
       id: p.id,
       name: p.name,
@@ -212,7 +205,6 @@ export const BUSINESS_QUERIES = {
       })),
     }));
 
-    // 3) Flatten all orderItems into a single `orders` array
     const orders = biz.products.flatMap((p) =>
       p.orderItems.map((oi) => ({
         orderItemId: oi.id,
@@ -229,7 +221,6 @@ export const BUSINESS_QUERIES = {
       }))
     );
 
-    // 4) Support requests as-is
     const supportRequests = biz.supportRequests.map((sr) => ({
       id: sr.id,
       subject: sr.subject,
@@ -385,7 +376,6 @@ export const USER_QUERIES = {
         },
       },
     });
-    // Remove decimals from order amounts, price, and review rating
     if (user && user.orders) {
       user.orders = user.orders.map((order) => {
         return {
@@ -467,8 +457,6 @@ export const PRODUCT_QUERIES = {
   getFeaturedProducts: async (limit = 10) => {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-    // fetch reviews so we can calc avg rating
     const products = await prisma.product.findMany({
       where: {
         orderItems: { some: { order: { orderDate: { gte: thirtyDaysAgo } } } },
@@ -481,7 +469,6 @@ export const PRODUCT_QUERIES = {
       },
     });
 
-    // compute avgRating and count
     return products.map((p) => {
       const count = p.reviews.length;
       const avg =

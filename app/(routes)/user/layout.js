@@ -22,7 +22,6 @@ export default async function UserLayout({ children }) {
   return (
     <UserProvider user={userData}>
       <div className="min-h-screen bg-[#F8F8F8]">
-        {/* header/banner */}
         <div className="bg-orange-200 text-[#ff4500] py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold">Your Dashboard</h1>
@@ -32,12 +31,9 @@ export default async function UserLayout({ children }) {
 
         <div className="container mx-auto px-4 -mt-8 pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* sidebar */}
             <aside className="lg:col-span-1">
               <UserSidebar />
             </aside>
-
-            {/* content */}
             <section className="lg:col-span-3 space-y-8">{children}</section>
           </div>
         </div>

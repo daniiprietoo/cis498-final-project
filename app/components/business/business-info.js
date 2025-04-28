@@ -7,7 +7,7 @@ import { FiMail, FiCalendar, FiBriefcase } from "react-icons/fi";
 export default function BusinessInfo({ user, business }) {
   if (!user && !business) return null;
 
-  // Format date to show when user joined
+  /*FORMATTING*/
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", {

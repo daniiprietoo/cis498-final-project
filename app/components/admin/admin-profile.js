@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FiMail, FiCalendar } from "react-icons/fi";
 
 export default function AdminProfile({ user }) {
-  // Format date to show when user joined
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("en-US", {

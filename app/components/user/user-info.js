@@ -10,7 +10,6 @@ export default function UserInfo({ user }) {
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ name: "", email: "" });
 
-  // when we enter edit mode, seed the form
   useEffect(() => {
     if (editing) {
       setForm({
@@ -80,7 +79,6 @@ export default function UserInfo({ user }) {
     );
   }
 
-  // read‑only view – no card wrapper
   const formatDate = dateString =>
     new Intl.DateTimeFormat("en-US", {
       year: "numeric",
@@ -90,7 +88,7 @@ export default function UserInfo({ user }) {
 
   return (
     <div className="text-center space-y-4">
-      {/* avatar */}
+
       <div className="relative w-24 h-24 mx-auto">
         {user.image ? (
           <Image

@@ -1,4 +1,3 @@
-// components/dashboard/reviews-tab.js
 "use client";
 
 import { useState } from "react";
@@ -54,7 +53,6 @@ export default function ReviewsTab({ reviews }) {
     });
     const updatedReview = await res.json();
 
-    // 1) update the context user.reviews array
     const newReviews = user.reviews.map((r) =>
       r.id === reviewId
         ? { ...r, rating: updatedReview.updated.rating, comment: updatedReview.updated.comment }
@@ -62,7 +60,6 @@ export default function ReviewsTab({ reviews }) {
     );
     setUser({ ...user, reviews: newReviews });
 
-    // 2) reset editing state
     setEditingId(null);
   };
 
@@ -90,7 +87,7 @@ export default function ReviewsTab({ reviews }) {
           className="border-b border-[#CCC] pb-6 bg-white p-4 rounded-lg"
         >
           {editingId === review.id ? (
-            // EDIT FORM
+            /*EDIT FORM*/
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -129,7 +126,6 @@ export default function ReviewsTab({ reviews }) {
               </div>
             </form>
           ) : (
-            // STATIC VIEW
             <>
               <div className="flex justify-between mb-2">
                 <div>

@@ -39,7 +39,7 @@ export default function NewSupportPage() {
     <div className="space-y-6 bg-[#F8F8F8] p-6 rounded-lg shadow-sm">
       <h2 className="text-2xl font-semibold mb-4">New Support Request</h2>
       {error && <div className="mb-4 text-red-600">{error}</div>}
-      {/* Direct email link */}
+      {/*Email*/}
       <div className="mb-6 text-sm text-center">
         Or email us directly at{" "}
         <a

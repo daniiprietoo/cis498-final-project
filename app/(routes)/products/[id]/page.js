@@ -14,20 +14,19 @@ export default async function ProductPage({ params }) {
     );
   }
 
-  // strip out Decimal & Date objects before hydration
   const product = {
     id: raw.id,
     name: raw.name,
     description: raw.description,
-    price: raw.price.toNumber(), // Decimal → number
+    price: raw.price.toNumber(), 
     category: raw.category,
     url: raw.url,
     status: raw.status,
     mainImage: raw.mainImage,
-    createdAt: raw.createdAt.toISOString(), // Date → string
+    createdAt: raw.createdAt.toISOString(), 
     updatedAt: raw.updatedAt.toISOString(),
     sellerId: raw.sellerId,
-    seller: { name: raw.sellerName}, // nest back for ProductDetails
+    seller: { name: raw.sellerName}, 
     avgRating: raw.avgRating,
     reviewsCount: raw.reviewsCount,
     reviews: raw.reviews.map((r) => ({
@@ -41,10 +40,10 @@ export default async function ProductPage({ params }) {
 
   return (
     <div className="container mx-auto px-4 py-8 space-y-12 bg-[#F8F8F8]">
-      {/* 1) Product Details */}
+      {/* Product Details */}
       <ProductDetails product={product} />
 
-      {/* 2) Reviews */}
+      {/* Reviews */}
       <ReviewSection reviews={product.reviews} productId={product.id} />
     </div>
   );

@@ -18,7 +18,6 @@ export default async function DashboardLayout({ children }) {
   return (
     <BusinessProvider business={businessData}>
       <div className="min-h-screen bg-[#F8F8F8] text-gray-700">
-        {/* header/banner */}
         <div className="bg-gradient-to-r from-orange-200 to-[#F8F8F8] text-white py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl font-bold text-[#ff4500]">

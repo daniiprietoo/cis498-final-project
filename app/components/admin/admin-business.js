@@ -19,7 +19,7 @@ export default function AdminBusiness() {
     status: true,
   });
 
-  // filter only business‐role entries
+  /*FILTER BUSINESS ROLES*/
   const businessUsers = admin?.users?.filter(
     (u) => u.role === "BUSINESS"
   ) || [];
@@ -37,7 +37,6 @@ export default function AdminBusiness() {
     const deleted = await res.json();
     console.log("Deleted user:", deleted);
     alert("User deleted successfully");
-    // 1) update the context admin.users array
     setAdmin({ ...admin, users: admin.users.filter((u) => u.id !== id) });
   }
 
@@ -66,7 +65,6 @@ export default function AdminBusiness() {
     const deleted = await res.json();
     console.log("Deleted business:", deleted);
     alert("Business deleted successfully");
-    // 1) update the context admin.users array
     setAdmin({ ...admin, business: admin.business.filter((b) => b.id !== id) });
   }
 

@@ -36,7 +36,7 @@ export default function BusinessOverview({ business }) {
         </div>
       </div>
 
-      {/* Charts Section */}
+      {/* CHARTS */}
       <div className="flex flex-col md:flex-row gap-6 mt-8">
         <div className="flex-1 bg-white p-4 rounded-lg shadow">
           <h3 className="text-lg font-medium mb-2">Monthly Sales</h3>

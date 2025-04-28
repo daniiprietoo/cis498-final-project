@@ -25,7 +25,6 @@ const MONTH_LABELS = [
 ];
 
 export default function SalesChart({ orders }) {
-  // init a 12‑slot array for monthly counts
   const monthlySales = new Array(12).fill(0);
 
   orders.forEach(o => {
@@ -39,7 +38,7 @@ export default function SalesChart({ orders }) {
       {
         label: 'Sales',
         data: monthlySales,
-        backgroundColor: '#f97316' // orange-500
+        backgroundColor: '#f97316'
       }
     ]
   };

@@ -70,7 +70,7 @@ export default function HomePage() {
         <SearchBar />
       </Suspense>
 
-      {/* Featured Tools */}
+      {/* Tools */}
       <section className="py-8 ">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-12 text-[#000000]">
@@ -88,7 +88,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* why */}
       <section className="py-16 bg-[#F8F8F8]">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-12 text-[#000000] ">
@@ -132,7 +132,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Seller Section */}
+      {/* SellerS */}
       <section className="py-16 bg-[#F8F8F8] text-[#ff4500]">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
