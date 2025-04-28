@@ -43,10 +43,10 @@ export default function NewSupportPage() {
       <div className="mb-6 text-sm text-center">
         Or email us directly at{" "}
         <a
-          href="mailto:support@devtools.io"
+          href="mailto:devtools.support@example.com"
           className="text-[#ff4500] hover:underline"
         >
-          support@devtools.io
+          devtools.support@example.com
         </a>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -56,6 +56,7 @@ export default function NewSupportPage() {
           </label>
           <input
             id="subject"
+            placeholder="Issue subject – Company Name"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             className="mt-1 block w-full border rounded px-3 py-2"
@@ -67,6 +68,7 @@ export default function NewSupportPage() {
           </label>
           <textarea
             id="message"
+            placeholder="Short description of the issue..."
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}

@@ -9,7 +9,7 @@ Our mission:
 Key features:
 - Handpicked, expertly reviewed plugins, themes, and libraries
 - Instant, secure payment processing
-- 24/7 customer support at support@devtools.io
+- 24/7 customer support at devtools.support@example.com
 - 30-day refund policy on unused purchases
 - Detailed usage guides and code samples for every product
 
