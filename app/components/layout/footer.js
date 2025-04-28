@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-orange-200 text-[#ff4500] py-12">
@@ -10,28 +12,28 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Products</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Plugins</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Themes</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Extensions</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Libraries</a></li>
+              <li><a href="/plugins" className="text-[#000000] hover:text-white transition">Plugins</a></li>
+              <li><a href="/themes" className="text-[#000000] hover:text-white transition">Themes</a></li>
+              <li><a href="/extensions" className="text-[#000000] hover:text-white transition">Extensions</a></li>
+              <li><a href="/libraries" className="text-[#000000] hover:text-white transition">Libraries</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold mb-4">Resources</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Documentation</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Blog</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Support</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">API</a></li>
+              <li><a href="/documentation" className="text-[#000000] hover:text-white transition">Documentation</a></li>
+              <li><a href="/blog" className="text-[#000000] hover:text-white transition">Blog</a></li>
+              <li><a href="/user/support" className="text-[#000000] hover:text-white transition">Support</a></li>
+              <li><a href="/api" className="text-[#000000] hover:text-white transition">API</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold mb-4">Company</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-[#000000] hover:text-white transition">About</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Careers</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Privacy</a></li>
-              <li><a href="#" className="text-[#000000] hover:text-white transition">Terms</a></li>
+              <li><a href="/about" className="text-[#000000] hover:text-white transition">About</a></li>
+              <li><a href="/careers" className="text-[#000000] hover:text-white transition">Careers</a></li>
+              <li><a href="/privacy" className="text-[#000000] hover:text-white transition">Privacy</a></li>
+              <li><a href="/terms" className="text-[#000000] hover:text-white transition">Terms</a></li>
             </ul>
           </div>
         </div>
