@@ -12,6 +12,7 @@ import {
   FiBarChart2 as BarChart,
 } from "react-icons/fi";
 import { Suspense } from "react";
+import Link from "next/link";
 
 export default function HomePage() {
   const categories = [
@@ -142,9 +143,14 @@ export default function HomePage() {
                 Share your developer tools with a global audience of developers<br/>
                 and earn money for your creations.
               </p>
-              <button className="bg-[#ff4500] border-white px-6 py-3 rounded-lg font-bold hover:bg-[#e03f00] transition text-white">
-                Start Selling
-              </button>
+              <Link href="/auth/register">
+                <button
+                  type="button"
+                  className="bg-[#ff4500] border-white px-6 py-3 rounded-lg font-bold hover:bg-[#e03f00] transition text-white"
+                >
+                  Start Selling
+                </button>
+              </Link>
             </div>
             <div className="md:w-1/2 grid grid-cols-2 gap-4">
               <div className="bg-orange-100 p-4 rounded-lg backdrop-blur-sm border ">
