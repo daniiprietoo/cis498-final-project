@@ -2,10 +2,16 @@
 
 import { useCart } from "@/components/cart/cart-context";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function CartPage() {
+  const { data: user, status } = useSession();
   const { items, removeItem, updateQuantity, clearCart, total } = useCart();
   const router = useRouter();
+
+  if (user?.user?.role === "ADMIN") {
+    router.push("/admin");
+  }
 
   const handlePlaceOrder = async () => {
     const res = await fetch("/api/orders", {
@@ -21,6 +27,8 @@ export default function CartPage() {
     clearCart();
     router.push(`/orders/${orderId}`);
   };
+
+
 
   if (items.length === 0) {
     return (

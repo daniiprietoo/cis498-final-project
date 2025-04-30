@@ -1,4 +1,4 @@
-import { FiDownload, FiExternalLink } from "react-icons/fi";
+import { FiExternalLink } from "react-icons/fi";
 
 export default function OrdersTab({ orders }) {
   const formatDate = (dateString) => {
@@ -79,21 +79,13 @@ export default function OrdersTab({ orders }) {
               <td className="py-3 px-2 text-sm text-[#666666]">
                 {order.orderItems.length} items
               </td>
-              <td className="py-3 px-2 text-right">
+              <td className="py-3 px-2 text-center">
                 <a
                   href={`/orders/${order.id}`}
                   className="text-[#ff4500] hover:text-[#e03f00] transition mr-3"
                 >
                   <FiExternalLink className="inline-block" />
                 </a>
-                {order.paymentStatus === "COMPLETED" && (
-                  <a
-                    href="#"
-                    className="text-[#ff4500] hover:text-[#e03f00] transition"
-                  >
-                    <FiDownload className="inline-block" />
-                  </a>
-                )}
               </td>
             </tr>
           ))}

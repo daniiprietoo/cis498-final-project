@@ -60,7 +60,7 @@ export function NavBar() {
           </div>
           {status !== "loading" && (
             <div className="hidden md:flex items-center">
-              {status === "authenticated" && (
+              {status === "authenticated" && user?.user?.role !== "ADMIN" && (
                 <button
                   onClick={() => router.push("/cart")}
                   className="mr-2 p-2 rounded-md bg-[#FF4500] hover:bg-[#e03f00] transition"
